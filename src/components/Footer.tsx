@@ -54,7 +54,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-orange-400" />
-                <span className="text-gray-600">+91 98765 43210</span>
+                <span className="text-gray-600">+91 70967 99555</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-orange-400" />
@@ -62,7 +62,8 @@ const Footer = () => {
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-orange-400 mt-1" />
-                <span className="text-gray-600">Industrial Area, Phase-II<br />Chandigarh, India</span>
+                <span className="text-gray-600">Shop No-02, Bajarang Complex, Near Prime Hotel, <br />
+                    Morarji Circle Road, Gunjan, Vapi. India - 396195</span>
               </div>
             </div>
           </div>

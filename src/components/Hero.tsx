@@ -16,8 +16,12 @@ const Hero = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              right: `${Math.random() * 100}%`,
+              bottom: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 2}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
+              animationDuration: `${2 + Math.random() * 3}s`,
+              opacity: Math.random() * 0.5 + 0.5,
+              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(255, 106, 0, 0.5)`,
             }}
           ></div>
         ))}

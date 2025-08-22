@@ -10,9 +10,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <div className="relative">
-              {/* <Zap className="w-8 h-8 text-orange-400" /> */}
-              <img ref="dist/assets/vk-logo.png"></img>
-              {/* <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div> */}
+              <img src="/fin.png" alt="VK Automation Logo" className="w-10 h-10"/>
+              <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div>
             </div>
             <span className="text-xl font-bold text-cyan-500" >VK Automation And Control </span>
           </div>

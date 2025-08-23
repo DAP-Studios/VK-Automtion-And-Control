@@ -13,7 +13,7 @@ const Header = () => {
               <img src="/fin.png" alt="VK Automation Logo" className="w-10 h-10"/>
               <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div>
             </div>
-            <span className="text-xl font-bold text-cyan-500" >VK Automation And Control </span>
+            <span className="text-xl font-bold text--500" >VK Automation And Control </span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">

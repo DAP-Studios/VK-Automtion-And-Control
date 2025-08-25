@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +13,10 @@ const Header = () => {
               <img src="/fin.png" alt="VK Automation Logo" className="w-10 h-10"/>
               <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div>
             </div>
-            <span className="text-xl font-bold text--500" >VK Automation And Control </span>
+            <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              VK Automation And Control
+            </span>
+
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">

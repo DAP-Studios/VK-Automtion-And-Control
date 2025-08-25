@@ -65,7 +65,7 @@ const Contact = () => {
                   <h4 className="text-gray-900 font-semibold mb-1">Phone/WhatsApp</h4>
                   <p className="text-gray-600">+91 70967 99555</p>
                   <p className="text-gray-600">
-                    <a href="https://wa.me/message/H3XPDIMPNLRZL1" className="text-orange-500 hover:text-orange-600 transition-colors">
+                    <a href="https://wa.me/message/H3XPDIMPNLRZL1" className="text-cyan-500 hover:text-orange-600 transition-colors">
                       WhatsApp Chat
                     </a>
                   </p>

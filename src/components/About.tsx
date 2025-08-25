@@ -35,10 +35,9 @@ const About = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300">
-                Our Portfolio
-              </button>
-              <button className="border-2 border-cyan-500 text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300">
+              <button 
+                onClick={() => { window.location.href = '#contact'; }}  
+                className="border-2 border-cyan-500 bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300">
                 Contact Us
               </button>
             </div>

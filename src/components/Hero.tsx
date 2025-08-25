@@ -1,5 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { ArrowRight, Cpu, Zap, Shield } from 'lucide-react';
+import { SiWhatsapp } from "react-icons/si";
 
 const Hero = () => {
   return (
@@ -9,10 +10,10 @@ const Hero = () => {
       
       {/* Floating particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(100)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-orange-400 rounded-full animate-pulse"
+            className="absolute w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -21,7 +22,7 @@ const Hero = () => {
               animationDelay: `${Math.random() * 2}s`,
               animationDuration: `${2 + Math.random() * 3}s`,
               opacity: Math.random() * 0.5 + 0.5,
-              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(255, 106, 0, 0.5)`,
+              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(0, 170, 255, 0.74)`,
             }}
           ></div>
         ))}
@@ -43,14 +44,33 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <button className="group bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+          <button 
+            onClick={() => { window.location.href = '#products'; }}
+          className="group bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
             Explore Products
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="border-2 border-orange-400 text-orange-400 px-8 py-4 rounded-lg font-semibold hover:bg-orange-400 hover:text-black transition-all duration-300 transform hover:scale-105">
+          
+          <a 
+            href="https://wa.me/message/H3XPDIMPNLRZL1" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg"
+          >
             Get Quote
-          </button>
-        </div>
+            <SiWhatsapp className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform" />
+          </a>
+
+
+          {/* <button 
+            onClick={() => { window.location.href = "https://wa.me/message/H3XPDIMPNLRZL1"; }}
+            className="border-2 border-orange-400 text-orange-400 px-8 py-4 rounded-lg font-semibold hover:bg-orange-400 hover:text-black transition-all duration-300 transform hover:scale-105"
+            >
+            Get Quote
+            <Send className="ml-2 w-5 h-5 inline-block text-cyan-400" />
+          </button> */}
+
+          </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="bg-white/80 backdrop-blur-sm border border-orange-500/30 rounded-lg p-6 hover:bg-white/90 transition-all duration-300 shadow-lg">

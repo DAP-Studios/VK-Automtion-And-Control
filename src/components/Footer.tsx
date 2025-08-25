@@ -1,5 +1,5 @@
-import React from 'react';
-import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+// import React from 'react';
+import { Mail, Phone, MapPin, Facebook, Linkedin} from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -11,10 +11,10 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
               <div className="relative">
-                <Zap className="w-8 h-8 text-orange-400" />
+                <img src="/fin.png" alt="VK Automation Logo" className="w-10 h-10"/>
                 <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div>
               </div>
-              <span className="text-2xl font-bold text-gray-900">VK Automation</span>
+              <span className="text-2xl font-bold text-gray-900"> VK Automation and Control </span>
             </div>
             <p className="text-gray-600 mb-6 max-w-md">
               Leading provider of industrial automation solutions, specializing in PLC systems, 
@@ -24,15 +24,15 @@ const Footer = () => {
               <a href="#" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
                 <Facebook className="w-5 h-5 text-orange-500 hover:text-white" />
               </a>
-              <a href="#" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
-                <Twitter className="w-5 h-5 text-orange-500 hover:text-white" />
+
+              <a href="https://maps.app.goo.gl/Sdpbb3MV3jwyxN238" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
+                <MapPin className="w-5 h-5 text-orange-500 hover:text-white" />
               </a>
-              <a href="#" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
+
+              <a href="https://www.linkedin.com/in/vk-automation-and-control-91542a380?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
                 <Linkedin className="w-5 h-5 text-orange-500 hover:text-white" />
               </a>
-              <a href="#" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
-                <Instagram className="w-5 h-5 text-orange-500 hover:text-white" />
-              </a>
+            
             </div>
           </div>
 

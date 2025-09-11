@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Code, Wrench, Headphones, BookOpen, Zap, Shield } from 'lucide-react';
 
 const Services = () => {
@@ -81,7 +81,9 @@ const Services = () => {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-orange-500/30">
-                  <button className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300">
+                  <button 
+                    onClick={() => { window.location.href = "#contact"; }}
+                    className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300">
                     Get Quote
                   </button>
                 </div>

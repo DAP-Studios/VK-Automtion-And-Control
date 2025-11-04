@@ -1,6 +1,5 @@
 // import React from 'react';
 import { ArrowRight, Cpu, Zap, Shield } from 'lucide-react';
-import { SiWhatsapp } from "react-icons/si";
 
 const Hero = () => {
   return (
@@ -44,32 +43,42 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <button 
-            onClick={() => { window.location.href = '#products'; }}
-          className="group bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+          <button
+            onClick={() => {
+              const el = document.getElementById('products');
+              if (el instanceof HTMLElement) {
+                const hadTabIndex = el.hasAttribute('tabindex');
+                if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.focus();
+                if (!hadTabIndex) el.removeAttribute('tabindex');
+              } else {
+                window.location.hash = '#products';
+              }
+            }}
+            className="group bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
             Explore Products
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <a 
-            href="https://wa.me/message/H3XPDIMPNLRZL1" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el instanceof HTMLElement) {
+                const hadTabIndex = el.hasAttribute('tabindex');
+                if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                el.focus();
+                if (!hadTabIndex) el.removeAttribute('tabindex');
+              } else {
+                window.location.hash = '#contact';
+              }
+            }}
             className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg"
           >
             Get Quote
-            <SiWhatsapp className="ml-2 w-5 h-5 inline-block group-hover:translate-x-1 transition-transform" />
-          </a>
-
-
-          {/* <button 
-            onClick={() => { window.location.href = "https://wa.me/message/H3XPDIMPNLRZL1"; }}
-            className="border-2 border-orange-400 text-orange-400 px-8 py-4 rounded-lg font-semibold hover:bg-orange-400 hover:text-black transition-all duration-300 transform hover:scale-105"
-            >
-            Get Quote
-            <Send className="ml-2 w-5 h-5 inline-block text-cyan-400" />
-          </button> */}
-
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
           </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">

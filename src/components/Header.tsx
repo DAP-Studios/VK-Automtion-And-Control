@@ -38,11 +38,11 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-orange-500/20">
             <nav className="px-4 py-4 space-y-4">
-              <a href="#home" className="block text-gray-700 hover:text-orange-600 transition-colors">Home</a>
-              <a href="#products" className="block text-gray-700 hover:text-orange-600 transition-colors">Products</a>
-              <a href="#services" className="block text-gray-700 hover:text-orange-600 transition-colors">Services</a>
-              <a href="#about" className="block text-gray-700 hover:text-orange-600 transition-colors">About</a>
-              <a href="#contact" className="block text-gray-700 hover:text-orange-600 transition-colors">Contact</a>
+              <a href="#home" onClick={() => setIsMenuOpen(false)} className="block text-gray-700 hover:text-orange-600 transition-colors">Home</a>
+              <a href="#products" onClick={() => setIsMenuOpen(false)} className="block text-gray-700 hover:text-orange-600 transition-colors">Products</a>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className="block text-gray-700 hover:text-orange-600 transition-colors">Services</a>
+              <a href="#about" onClick={() => setIsMenuOpen(false)} className="block text-gray-700 hover:text-orange-600 transition-colors">About</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="block text-gray-700 hover:text-orange-600 transition-colors">Contact</a>
             </nav>
           </div>
         )}

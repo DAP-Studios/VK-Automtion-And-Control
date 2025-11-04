@@ -81,8 +81,19 @@ const Services = () => {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-orange-500/30">
-                  <button 
-                    onClick={() => { window.location.href = "#contact"; }}
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById('contact');
+                      if (el instanceof HTMLElement) {
+                        const hadTabIndex = el.hasAttribute('tabindex');
+                        if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        el.focus();
+                        if (!hadTabIndex) el.removeAttribute('tabindex');
+                      } else {
+                        window.location.hash = '#contact';
+                      }
+                    }}
                     className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300">
                     Get Quote
                   </button>

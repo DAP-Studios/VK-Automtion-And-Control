@@ -35,8 +35,19 @@ const About = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => { window.location.href = '#contact'; }}  
+              <button
+                onClick={() => {
+                  const el = document.getElementById('contact');
+                  if (el instanceof HTMLElement) {
+                    const hadTabIndex = el.hasAttribute('tabindex');
+                    if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.focus();
+                    if (!hadTabIndex) el.removeAttribute('tabindex');
+                  } else {
+                    window.location.hash = '#contact';
+                  }
+                }}
                 className="border-2 border-cyan-500 bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-700 transition-all duration-300">
                 Contact Us
               </button>

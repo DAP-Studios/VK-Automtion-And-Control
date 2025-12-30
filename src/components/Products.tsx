@@ -226,6 +226,40 @@ const Products: React.FC = () => {
     }
   };
 
+  // Major brands/companies for SEO
+  const brands = [
+    {
+      name: "Siemens",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Siemens-logo.svg",
+      url: "https://new.siemens.com/",
+    },
+    {
+      name: "Allen Bradley",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Allen-Bradley_logo.svg",
+      url: "https://www.rockwellautomation.com/",
+    },
+    {
+      name: "Schneider Electric",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Schneider_Electric_2007.svg",
+      url: "https://www.se.com/",
+    },
+    {
+      name: "Mitsubishi Electric",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Mitsubishi_Electric_logo.svg",
+      url: "https://www.mitsubishielectric.com/",
+    },
+    {
+      name: "Wonderware",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Wonderware_logo.svg",
+      url: "https://www.aveva.com/en/solutions/wonderware/",
+    },
+    {
+      name: "Invt PLC",
+      logo: "https://www.invt.com/themes/invt/images/logo.png",
+      url: "https://www.invt.com/",
+    },
+  ];
+
   return (
     <section id="products" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,8 +270,33 @@ const Products: React.FC = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Cutting-edge automation solutions designed to optimize your industrial processes
+            VK Automation And Control offers a comprehensive range of industrial automation products and solutions, including PLC systems, SCADA, HMI panels, drive systems, power distribution, safety systems, and maintenance services. We partner with leading brands like Siemens, Allen Bradley, Schneider Electric, Mitsubishi, and more to deliver reliable, efficient, and innovative automation for manufacturing, process, and industrial sectors in India.
           </p>
+        </div>
+
+        {/* Brands/Companies Section for SEO */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Brands We Work With</h3>
+          <div className="flex flex-wrap justify-center gap-8 items-center">
+            {brands.map((brand) => (
+              <a
+                key={brand.name}
+                href={brand.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center group"
+                title={brand.name}
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name + ' logo'}
+                  className="h-12 w-auto mb-2 grayscale group-hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+                <span className="text-gray-700 text-sm font-medium">{brand.name}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -251,8 +310,9 @@ const Products: React.FC = () => {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={product.image}
-                    alt={product.title}
+                    alt={product.title + ' - ' + product.description + ' | VK Automation And Control'}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute top-4 left-4">
@@ -261,11 +321,9 @@ const Products: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{product.title}</h3>
                   <p className="text-gray-700 mb-4">{product.description}</p>
-                  
                   <div className="space-y-2">
                     {product.features.map((feature: string, featureIndex: number) => (
                       <div key={featureIndex} className="flex items-center text-sm text-gray-600">
@@ -274,7 +332,6 @@ const Products: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                  
                   <button 
                     onClick={() => openModal(product)}
                     className="mt-6 w-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/40 text-cyan-600 py-3 rounded-lg font-semibold hover:from-cyan-500 hover:to-blue-500 hover:text-white transition-all duration-300"
@@ -287,6 +344,23 @@ const Products: React.FC = () => {
           })}
         </div>
       </div>
+
+      {/* Schema.org Product/Brand Structured Data for SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          'name': 'Industrial Automation Solutions',
+          'brand': brands.map(b => ({
+            '@type': 'Brand',
+            'name': b.name,
+            'url': b.url,
+            'logo': b.logo
+          })),
+          'description': 'VK Automation And Control provides PLC, SCADA, HMI, drive systems, and industrial automation solutions in India. We work with top brands like Siemens, Allen Bradley, Schneider Electric, Mitsubishi, and more.',
+          'url': 'https://vkautomationandcontrol.in/#products',
+        })}
+      </script>
 
       {/* Modal Popup */}
       {selectedProduct && (

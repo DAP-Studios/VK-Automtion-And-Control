@@ -80,18 +80,21 @@ const About = () => {
         </div>
 
         <div className="mt-20 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Expertise</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-8">Our Expertise in Vapi &amp; Gujarat</h3>
+          <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
+            VK Automation And Control specializes in delivering industrial automation solutions using leading brands and technologies in Vapi, Gujarat, and across India. Our expertise covers PLCs, SCADA, HMI, and automation software for manufacturing and process industries in the region.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              "Siemens S7 Series",
-              "Allen Bradley",
-              "Schneider Electric",
-              "Mitsubishi PLCs",
-              "WinCC SCADA",
-              "WinTech ",
-              "Invt PLC",
-              "Wonderware",
-              "Ignition SCADA"
+              "Siemens (Vapi, Gujarat)",
+              "Allen Bradley (Vapi, Gujarat)",
+              "Schneider Electric Solutions (Vapi, Gujarat)",
+              "Mitsubishi (Vapi, Gujarat)",
+              "WinCC SCADA Integrator (Vapi, Gujarat)",
+              "WinTech Automation (Vapi, Gujarat)",
+              "Invt PLC Systems (Vapi, Gujarat)",
+              "Wonderware SCADA (Vapi, Gujarat)",
+              "Wecon (Vapi, Gujarat)"
             ].map((expertise, index) => (
               <div
                 key={index}

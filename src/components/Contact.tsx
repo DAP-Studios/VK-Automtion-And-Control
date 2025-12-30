@@ -64,8 +64,8 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       title: "Email Address",
-      content: "info@vkautomation.com",
-      link: "mailto:info@vkautomation.com"
+      content: "info@vkautomationandcontrol.in",
+      link: "mailto:info@vkautomationandcontrol.in"
     },
     {
       icon: Clock,

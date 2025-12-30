@@ -3,8 +3,8 @@ import { Award, Users, Clock, Target } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    { icon: Award, label: "Years Experience", value: "1.5+" },
-    { icon: Users, label: "Projects Completed", value: "200+" },
+    { icon: Award, label: "Years Experience", value: "5+" },
+    { icon: Users, label: "Projects Completed", value: "51+" },
     { icon: Clock, label: "Support Hours", value: "24/7" },
     { icon: Target, label: "Client Satisfaction", value: "98%" }
   ];
@@ -24,7 +24,7 @@ const About = () => {
             </p>
             <p className="text-gray-600 mb-8 leading-relaxed">
               VK Automation And Control is a premier provider of industrial automation solutions, specializing in 
-              PLC systems, SCADA development, and comprehensive control systems. With over 15 years of experience, 
+              PLC systems, SCADA development, and comprehensive control systems. With over 5 years of experience, 
               we've successfully delivered automation solutions across various industries including manufacturing, 
               power generation, water treatment, and process industries.
             </p>

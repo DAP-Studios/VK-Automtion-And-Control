@@ -86,15 +86,15 @@ const About = () => {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              "Siemens (Vapi, Gujarat)",
-              "Allen Bradley (Vapi, Gujarat)",
-              "Schneider Electric Solutions (Vapi, Gujarat)",
-              "Mitsubishi (Vapi, Gujarat)",
-              "WinCC SCADA Integrator (Vapi, Gujarat)",
-              "WinTech Automation (Vapi, Gujarat)",
-              "Invt PLC Systems (Vapi, Gujarat)",
-              "Wonderware SCADA (Vapi, Gujarat)",
-              "Wecon (Vapi, Gujarat)"
+              "Siemens ",
+              "Allen Bradley ",
+              "Schneider Electric Solutions ",
+              "Mitsubishi ",
+              "WinCC ",
+              "WinTech ",
+              "Invt  ",
+              "Wonderware  ",
+              "Wecon "
             ].map((expertise, index) => (
               <div
                 key={index}

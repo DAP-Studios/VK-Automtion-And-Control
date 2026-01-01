@@ -81,11 +81,11 @@ const Contact: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-              Get In Touch
+              Get In Touch With VK Automation
             </span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Have a question or need a quote? We're here to help you with your automation needs.
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Have a question about <strong>PLC programming</strong>, <strong>SCADA development</strong>, <strong>HMI panel design</strong>, or need a quote for <strong>industrial automation solutions</strong>? We're here to help you with your automation needs. Contact VK Automation And Control in Vapi, Gujarat for professional automation consulting, system integration, and 24/7 technical support.
           </p>
         </div>
 

@@ -47,11 +47,11 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-              Our Services
+              Industrial Automation Services &amp; Solutions
             </span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Comprehensive automation services from design to deployment and beyond
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Comprehensive automation services from design to deployment and beyond. VK Automation And Control provides end-to-end <strong>system integration</strong>, <strong>PLC programming</strong>, <strong>SCADA development</strong>, <strong>HMI panel design</strong>, professional <strong>installation and commissioning</strong>, <strong>24/7 technical support</strong>, <strong>automation training programs</strong>, <strong>system upgrades</strong> and <strong>industrial safety compliance</strong> services throughout Vapi, Gujarat and India. Our certified engineers deliver reliable automation solutions for manufacturing, chemical, pharmaceutical and industrial process control.
           </p>
         </div>
 
@@ -81,22 +81,40 @@ const Services = () => {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-orange-500/30">
-                  <button
-                    onClick={() => {
-                      const el = document.getElementById('contact');
-                      if (el instanceof HTMLElement) {
-                        const hadTabIndex = el.hasAttribute('tabindex');
-                        if (!hadTabIndex) el.setAttribute('tabindex', '-1');
-                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        el.focus();
-                        if (!hadTabIndex) el.removeAttribute('tabindex');
-                      } else {
-                        window.location.hash = '#contact';
-                      }
-                    }}
-                    className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300">
-                    Get Quote
-                  </button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById('products');
+                        if (el instanceof HTMLElement) {
+                          const hadTabIndex = el.hasAttribute('tabindex');
+                          if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          el.focus();
+                          if (!hadTabIndex) el.removeAttribute('tabindex');
+                        } else {
+                          window.location.hash = '#products';
+                        }
+                      }}
+                      className="w-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/40 text-cyan-600 py-3 rounded-lg font-semibold hover:from-cyan-500 hover:to-blue-500 hover:text-white transition-all duration-300 text-sm">
+                      View Products
+                    </button>
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById('contact');
+                        if (el instanceof HTMLElement) {
+                          const hadTabIndex = el.hasAttribute('tabindex');
+                          if (!hadTabIndex) el.setAttribute('tabindex', '-1');
+                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          el.focus();
+                          if (!hadTabIndex) el.removeAttribute('tabindex');
+                        } else {
+                          window.location.hash = '#contact';
+                        }
+                      }}
+                      className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300 text-sm">
+                      Get Quote
+                    </button>
+                  </div>
                 </div>
               </div>
             );

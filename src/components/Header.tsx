@@ -1,78 +1,170 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-
+import React, { useState, useEffect } from "react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(
+    window.innerHeight > window.innerWidth
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 backdrop-blur-2xl border-b border-slate-200/60 shadow-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="flex items-center justify-between h-24">
-          {/* Logo and Brand */}
-          <div className="flex items-center gap-4">
-            <div className="relative flex items-center justify-center w-14 h-14 drop-shadow-xl">
-              <img src="/fin.png" alt="VK Automation Logo" className="w-12 h-12 z-10 rounded-full shadow-lg" />
-              <div className="absolute inset-0 w-14 h-14 bg-gradient-to-br from-orange-400/30 to-cyan-400/20 rounded-full blur-lg animate-pulse z-0"></div>
-            </div>
-            <span className="text-3xl font-extrabold font-sans bg-gradient-to-r from-cyan-600 via-blue-700 to-orange-500 bg-clip-text text-transparent tracking-tight select-none drop-shadow-md">
-              VK Automation
-            </span>
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-30 bg-transparent">
+      
+      {/* LEFT: Glass Pill (Logo + Text, content width only) */}
+      <div className="fixed top-0 left-0 z-40 ml-4 mt-4">
+        <div
+          className="
+            inline-flex items-center gap-3
+            px-3 py-2
+            bg-white/10 backdrop-blur-lg
+            rounded-full
+            shadow-lg border border-orange-600/100
+            hover:bg-orange-300 transition-all duration-200
+          "
+        >
+          {/* Logo */}
+          {/* <div
+            className="
+              w-10 h-10 sm:w-12 sm:h-12
+              rounded-full
+              bg-gradient-to-br from-orange-500 to-orange-600
+              flex items-center justify-center
+              shadow-md
+            "
+          > */}
+            <img
+              src="src/assets/logo.png"
+              alt="VK Automation Logo"
+              className="w-16 h-16 sm:w-15 sm:h-15 object-contain"
+              draggable={false}
+            />
+          {/* </div> */}
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-2 bg-white/50 backdrop-blur-lg rounded-full px-6 py-3 shadow border border-slate-100/40">
-            {[
-              { href: '#home', label: 'Home' },
-              { href: '#products', label: 'Products' },
-              { href: '#services', label: 'Services' },
-              { href: '#about', label: 'About' },
-              { href: '#contact', label: 'Contact' },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="relative px-5 py-2 rounded-full font-semibold text-gray-800 hover:text-orange-600 transition group"
-              >
-                <span>{item.label}</span>
-                <span className="absolute left-1/2 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-cyan-400 rounded-full transition-all duration-300 group-hover:w-3/4 group-hover:left-1/8"></span>
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-900 p-2 rounded-full bg-white/80 hover:bg-orange-100 border border-orange-100/40 shadow"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-          </button>
+          {/* Text */}
+          <span className="font-bold text-gray-900 text-xl sm:text-2xl whitespace-nowrap">
+            VK Automation and Control
+          </span>
         </div>
-
-        {/* Mobile Nav */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-2xl border-t border-slate-200/40 rounded-b-2xl shadow-2xl animate-fade-in">
-            <nav className="px-4 py-8 flex flex-col gap-4">
-              {[
-                { href: '#home', label: 'Home' },
-                { href: '#products', label: 'Products' },
-                { href: '#services', label: 'Services' },
-                { href: '#about', label: 'About' },
-                { href: '#contact', label: 'Contact' },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-4 py-3 rounded-xl text-gray-800 font-semibold hover:bg-orange-100 hover:text-orange-600 transition text-lg"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
       </div>
+
+      {/* RIGHT: Navigation Bar (Desktop - Landscape only) */}
+      <div className={`fixed top-0 right-0 z-50 mr-10 mt-0 ${isPortrait ? "hidden" : "block"}`}>
+        <nav
+          className="
+            flex items-center gap-6
+            h-14 sm:h-16
+            pl-20 pr-20
+            bg-white/10
+            backdrop-blur-xl
+            rounded-bl-2xl rounded-br-2xl
+            shadow-lg
+            border border-orange-300
+          "
+        >
+          {[
+            { href: "#home", label: "Home" },
+            { href: "#products", label: "Products" },
+            { href: "#services", label: "Services" },
+            { href: "#about", label: "About" },
+            { href: "#contact", label: "Contact" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="
+                relative px-2 py-2
+                font-semibold text-gray-800
+                hover:text-orange-600
+                transition group
+                whitespace-nowrap
+                text-sm sm:text-base
+              "
+            >
+              <span>{item.label}</span>
+              <span
+                className="
+                  absolute left-0 bottom-0
+                  w-0 h-0.5
+                  bg-gradient-to-r from-orange-400 to-cyan-400
+                  transition-all duration-300
+                  group-hover:w-full
+                "
+              ></span>
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* RIGHT: Hamburger Menu (Portrait only) */}
+      <div className={`fixed top-0 right-0 z-50 mr-4 mt-4 ${isPortrait ? "block" : "hidden"}`}>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="
+            p-2
+            bg-white/10 backdrop-blur-lg
+            rounded-full
+            shadow-lg border border-white/20
+            hover:bg-white/30 transition-all duration-200
+          "
+        >
+          <svg
+            className="w-6 h-6 text-gray-800"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMenuOpen && isPortrait && (
+        <nav
+          className="
+            fixed top-16 right-4 z-40
+            flex flex-col gap-4
+            p-6
+            bg-white/10 backdrop-blur-xl
+            rounded-2xl
+            shadow-lg border border-white/20
+            min-w-max
+          "
+        >
+          {[
+            { href: "#home", label: "Home" },
+            { href: "#products", label: "Products" },
+            { href: "#services", label: "Services" },
+            { href: "#about", label: "About" },
+            { href: "#contact", label: "Contact" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="
+                font-semibold text-gray-800
+                hover:text-orange-600
+                transition
+              "
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 };

@@ -1,90 +1,84 @@
-// import React from 'react';
-import { Mail, Phone, MapPin, Facebook, Linkedin} from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer = () => {
-  return (
-    <footer className="bg-gradient-to-t from-gray-100 to-white border-t border-orange-500/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">VK Automation And Control - Industrial Automation Company Vapi, Gujarat</h2>
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="relative">
-                <img src="/fin.png" alt="VK Automation And Control - Industrial Automation Company Vapi Gujarat" className="w-10 h-10"/>
-                <div className="absolute inset-0 w-8 h-8 bg-orange-400/20 rounded-full animate-pulse"></div>
-              </div>
-              <span className="text-xl font-bold text-gray-900">VK Automation and Control</span>
-            </div>
-            <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
-              Leading provider of industrial automation solutions in Vapi, Gujarat. Specializing in PLC SCADA HMI programming (Siemens, Allen Bradley, Schneider Electric, Mitsubishi, Delta, Omron), VFD drives, control panel manufacturing for chemical, pharma, textile &amp; manufacturing industries across India. <strong>5+ years experience, 51+ projects completed, 24/7 support available</strong>.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
-                <Facebook className="w-5 h-5 text-orange-500 hover:text-white" />
-              </a>
+export default function Footer() {
+	return (
+		<footer className="bg-industrial-900 text-industrial-300">
+			<div className="container-wide py-16">
+				<div className="grid md:grid-cols-4 gap-12 mb-12">
+					{/* Company */}
+					<div>
+						<div className="text-2xl font-bold text-white mb-4">
+							VK<span className="text-brand-orange">|</span>AUTO
+						</div>
+						<p className="text-sm leading-relaxed">
+							Industrial automation and control systems engineering since 2010. 
+							Precision-engineered solutions for manufacturing and process industries.
+						</p>
+					</div>
 
-              <a href="https://maps.app.goo.gl/Sdpbb3MV3jwyxN238" aria-label="Google Maps Location" target="_blank" rel="noopener noreferrer" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
-                <MapPin className="w-5 h-5 text-orange-500 hover:text-white" />
-              </a>
+					{/* Quick Links */}
+					<div>
+						<h4 className="text-white font-bold mb-4">Quick Links</h4>
+						<nav className="space-y-2 text-sm">
+							<a href="#about" className="block hover:text-brand-orange transition-colors">About Us</a>
+							<a href="#products" className="block hover:text-brand-orange transition-colors">Products</a>
+							<a href="#industries" className="block hover:text-brand-orange transition-colors">Industries</a>
+							<a href="#services" className="block hover:text-brand-orange transition-colors">Services</a>
+							<a href="#contact" className="block hover:text-brand-orange transition-colors">Contact</a>
+						</nav>
+					</div>
 
-              <a href="https://www.linkedin.com/in/vk-automation-and-control-91542a380?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="bg-orange-500/10 hover:bg-orange-500 p-3 rounded-lg transition-colors">
-                <Linkedin className="w-5 h-5 text-orange-500 hover:text-white" />
-              </a>
-            
-            </div>
-          </div>
+					{/* Services */}
+					<div>
+						<h4 className="text-white font-bold mb-4">Services</h4>
+						<ul className="space-y-2 text-sm">
+							<li>System Design</li>
+							<li>PLC Programming</li>
+							<li>HMI/SCADA</li>
+							<li>Installation</li>
+							<li>Technical Support</li>
+						</ul>
+					</div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-gray-900 font-semibold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              <li><a href="#home" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">Home - VK Automation</a></li>
-              <li><a href="#products" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">PLC &amp; SCADA Products</a></li>
-              <li><a href="#services" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">Automation Services</a></li>
-              <li><a href="#about" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">About VK Automation</a></li>
-              <li><a href="#contact" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">Contact &amp; Quote</a></li>
-              <li><a href="https://maps.app.goo.gl/Sdpbb3MV3jwyxN238" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-orange-600 transition-colors font-semibold">Our Location</a></li>
-            </ul>
-          </div>
+					{/* Contact */}
+					<div>
+						<h4 className="text-white font-bold mb-4">Contact</h4>
+						<div className="space-y-3 text-sm">
+							<div className="flex items-start space-x-3">
+								<Mail className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
+								<a href="mailto:info@vkauto.com" className="hover:text-brand-orange transition-colors">
+									info@vkauto.com
+								</a>
+							</div>
+							<div className="flex items-start space-x-3">
+								<Phone className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
+								<a href="tel:+1234567890" className="hover:text-brand-orange transition-colors">
+									+1 (234) 567-890
+								</a>
+							</div>
+							<div className="flex items-start space-x-3">
+								<MapPin className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
+								<address className="not-italic">
+									1234 Industrial Parkway<br />
+									Manufacturing City, ST 12345
+								</address>
+							</div>
+						</div>
+					</div>
+				</div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-gray-900 font-semibold mb-6">Contact Info</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-orange-400" />
-                <span className="text-gray-600">+91 70967 99555</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-orange-400" />
-                <span className="text-gray-600">info@vkautomationandcontrol.in</span>
-              </div>
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-orange-400 mt-1" />
-                <span className="text-gray-600">Shop No-02, Bajarang Complex, Near Prime Hotel, <br />
-                    Morarji Circle Road, Gunjan, Vapi. India - 396195</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-orange-500/30 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 text-sm">
-              © 2026 VK Automation And Control. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-600 hover:text-orange-600 text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-600 hover:text-orange-600 text-sm transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-600 hover:text-orange-600 text-sm transition-colors">Support</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+				{/* Bottom bar */}
+				<div className="border-t border-industrial-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+					<div>
+						© {new Date().getFullYear()} VK Automation. All rights reserved.
+					</div>
+					<div className="flex space-x-6">
+						<a href="/privacy" className="hover:text-brand-orange transition-colors">Privacy Policy</a>
+						<a href="/terms" className="hover:text-brand-orange transition-colors">Terms of Service</a>
+						<a href="/iso" className="hover:text-brand-orange transition-colors">ISO 9001:2015 Certified</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	);
+}

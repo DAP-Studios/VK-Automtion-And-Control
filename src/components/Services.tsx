@@ -1,128 +1,219 @@
-// import React from 'react';
-import { Code, Wrench, Headphones, BookOpen, Zap, Shield } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Wrench, LineChart, Phone } from 'lucide-react';
 
-const Services = () => {
-  const services = [
-    {
-      icon: Code,
-      title: "System Integration",
-      description: "Complete automation system design and integration services",
-      details: ["Custom PLC Programming", "SCADA Development", "System Architecture", "Protocol Integration"]
-    },
-    {
-      icon: Wrench,
-      title: "Installation & Commissioning",
-      description: "Professional installation and commissioning of automation systems",
-      details: ["On-site Installation", "System Testing", "Performance Optimization", "Documentation"]
-    },
-    {
-      icon: Headphones,
-      title: "24/7 Technical Support",
-      description: "Round-the-clock technical support and maintenance services",
-      details: ["Remote Diagnostics", "Emergency Response", "Preventive Maintenance", "System Monitoring"]
-    },
-    {
-      icon: BookOpen,
-      title: "Training & Consultation",
-      description: "Comprehensive training programs and technical consultation",
-      details: ["Operator Training", "Technical Workshops", "System Optimization", "Best Practices"]
-    },
-    {
-      icon: Zap,
-      title: "Upgrades & Modernization",
-      description: "Legacy system upgrades and modernization services",
-      details: ["System Migration", "Technology Upgrades", "Performance Enhancement", "Future-proofing"]
-    },
-    {
-      icon: Shield,
-      title: "Safety Compliance",
-      description: "Industrial safety compliance and certification services",
-      details: ["Safety Audits", "Compliance Testing", "Risk Assessment", "Certification Support"]
-    }
-  ];
+export default function Services() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-              Industrial Automation Services &amp; Solutions
-            </span>
-          </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive automation services from design to deployment and beyond. VK Automation And Control provides end-to-end <strong>system integration</strong>, <strong>PLC programming</strong>, <strong>SCADA development</strong>, <strong>HMI panel design</strong>, professional <strong>installation and commissioning</strong>, <strong>24/7 technical support</strong>, <strong>automation training programs</strong>, <strong>system upgrades</strong> and <strong>industrial safety compliance</strong> services throughout Vapi, Gujarat and India. Our certified engineers deliver reliable automation solutions for manufacturing, chemical, pharmaceutical and industrial process control.
-          </p>
-        </div>
+	const services = [
+		{
+			icon: Wrench,
+			number: '01',
+			title: 'System Integration',
+			tagline: 'Complete automation architecture from concept through commissioning',
+			description: 'Multi-vendor platform integration with unified control strategy. From specification and panel design through field installation, programming, and validation testing. Structured documentation and operator training ensure sustainable operations.',
+			capabilities: [
+				{ label: 'PLC Programming', detail: 'Structured code in IEC 61131-3 languages with modular architecture' },
+				{ label: 'SCADA Systems', detail: 'Process visualization with alarming, trending, and recipe management' },
+				{ label: 'Panel Fabrication', detail: 'UL508A compliant control panels with wire labeling and schematics' },
+				{ label: 'Field Services', detail: 'Installation, termination, loop checking, and startup commissioning' }
+			],
+			deliverables: ['Functional design specification', 'Control panel drawings', 'Software documentation', 'Commissioning reports']
+		},
+		{
+			icon: LineChart,
+			number: '02',
+			title: 'Process Optimization',
+			tagline: 'Performance analysis and control tuning for operational efficiency',
+			description: 'Data-driven approach to control loop performance, energy consumption, and production throughput. Process historian analysis identifies optimization opportunities. Control algorithm improvements deliver measurable results in cycle time, waste reduction, and equipment utilization.',
+			capabilities: [
+				{ label: 'Loop Tuning', detail: 'PID controller optimization with stability and response time analysis' },
+				{ label: 'Energy Management', detail: 'Power monitoring and optimization strategies for utility cost reduction' },
+				{ label: 'OEE Analysis', detail: 'Overall Equipment Effectiveness tracking with downtime categorization' },
+				{ label: 'Predictive Maintenance', detail: 'Condition monitoring and failure prediction algorithms' }
+			],
+			deliverables: ['Process performance reports', 'Optimization recommendations', 'Control algorithm updates', 'Training documentation']
+		},
+		{
+			icon: Phone,
+			number: '03',
+			title: 'Technical Support',
+			tagline: 'Lifecycle support with rapid response and preventive maintenance',
+			description: '24/7 emergency response for critical production systems. Remote diagnostics with VPN connectivity minimize downtime. Preventive maintenance programs include regular site visits, backup verification, and documentation updates. Spare parts inventory management ensures component availability.',
+			capabilities: [
+				{ label: 'Emergency Response', detail: '24/7 phone support with 2-hour on-site response for critical failures' },
+				{ label: 'Remote Diagnostics', detail: 'Secure VPN access for troubleshooting and code modifications' },
+				{ label: 'Maintenance Programs', detail: 'Scheduled site visits with system health checks and backups' },
+				{ label: 'Documentation', detail: 'As-built drawings, code documentation, and operator manuals' }
+			],
+			deliverables: ['Service visit reports', 'System backup archives', 'Modification documentation', 'Training sessions']
+		}
+	];
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
-            return (
-              <div
-                key={index}
-                className="group bg-white backdrop-blur-sm border border-orange-500/30 rounded-xl p-8 hover:border-orange-400/70 transition-all duration-500 hover:transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl mb-4 group-hover:from-orange-500/20 group-hover:to-red-500/20 transition-all duration-300">
-                    <IconComponent className="w-8 h-8 text-orange-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-700 mb-6">{service.description}</p>
-                </div>
+	const processSteps = [
+		{ phase: 'Discovery', detail: 'Requirements analysis, site survey, existing system review' },
+		{ phase: 'Design', detail: 'Control philosophy, P&ID markup, equipment specifications' },
+		{ phase: 'Implementation', detail: 'Panel build, programming, factory acceptance testing' },
+		{ phase: 'Commissioning', detail: 'Site installation, loop checkout, operator training, validation' }
+	];
 
-                <div className="space-y-3">
-                  {service.details.map((detail, detailIndex) => (
-                    <div key={detailIndex} className="flex items-center text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mr-3"></div>
-                      {detail}
-                    </div>
-                  ))}
-                </div>
+	return (
+		<section id="services" className="relative bg-white">
+			{/* Section introduction */}
+			<div className="section-padding-sm border-b border-industrial-200">
+				<div className="container-editorial" ref={ref}>
+					<div className="grid lg:grid-cols-12 gap-12">
+						<div className="lg:col-span-7">
+							<motion.div
+								initial={{ opacity: 0, y: 30 }}
+								animate={isInView ? { opacity: 1, y: 0 } : {}}
+								transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+							>
+								<span className="mono-label mb-6 block">Service Offerings</span>
+								<h2 className="mb-8">
+									Engineering Services
+									<span className="text-brand-orange"> for Industrial Control Systems</span>
+								</h2>
+								<p className="text-xl leading-relaxed text-industrial-600 measure-wide">
+									Full-lifecycle support from initial system design through ongoing maintenance. 
+									Technical expertise backed by rapid response and comprehensive documentation.
+								</p>
+							</motion.div>
+						</div>
 
-                <div className="mt-8 pt-6 border-t border-orange-500/30">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <button
-                      onClick={() => {
-                        const el = document.getElementById('products');
-                        if (el instanceof HTMLElement) {
-                          const hadTabIndex = el.hasAttribute('tabindex');
-                          if (!hadTabIndex) el.setAttribute('tabindex', '-1');
-                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          el.focus();
-                          if (!hadTabIndex) el.removeAttribute('tabindex');
-                        } else {
-                          window.location.hash = '#products';
-                        }
-                      }}
-                      className="w-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/40 text-cyan-600 py-3 rounded-lg font-semibold hover:from-cyan-500 hover:to-blue-500 hover:text-white transition-all duration-300 text-sm">
-                      View Products
-                    </button>
-                    <button
-                      onClick={() => {
-                        const el = document.getElementById('contact');
-                        if (el instanceof HTMLElement) {
-                          const hadTabIndex = el.hasAttribute('tabindex');
-                          if (!hadTabIndex) el.setAttribute('tabindex', '-1');
-                          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          el.focus();
-                          if (!hadTabIndex) el.removeAttribute('tabindex');
-                        } else {
-                          window.location.hash = '#contact';
-                        }
-                      }}
-                      className="w-full bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/40 text-orange-600 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300 text-sm">
-                      Get Quote
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
+						<div className="lg:col-span-5 lg:pt-20">
+							<motion.div
+								initial={{ opacity: 0, x: 30 }}
+								animate={isInView ? { opacity: 1, x: 0 } : {}}
+								transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+								className="bg-industrial-50 border-l-4 border-brand-orange p-8"
+							>
+								<span className="mono-label block mb-4">Engineering Process</span>
+								<p className="text-sm leading-relaxed text-industrial-700">
+									Structured workflow ensures project success: requirements analysis, detailed design, 
+									phased implementation with testing, and comprehensive handover documentation.
+								</p>
+							</motion.div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-export default Services;
+			{/* Service details - flowing sections */}
+			{services.map((service, index) => {
+				const Icon = service.icon;
+				const isEven = index % 2 === 0;
+
+				return (
+					<motion.div
+						key={service.title}
+						initial={{ opacity: 0, y: 30 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true, margin: "-120px" }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className={`section-padding-sm border-b border-industrial-200 ${isEven ? 'bg-industrial-50' : 'bg-white'}`}
+					>
+						<div className="container-editorial">
+							<div className="grid lg:grid-cols-12 gap-12 items-start">
+								{/* Content column */}
+								<div className={`lg:col-span-7 ${!isEven ? 'lg:col-start-6' : ''}`}>
+									<div
+									>
+										{/* Number and title */}
+										<div className="flex items-center mb-6">
+											<span className="font-mono text-6xl font-bold text-brand-orange/20 mr-6">
+												{service.number}
+											</span>
+											<div className="flex-1 h-[2px] bg-gradient-to-r from-brand-orange to-transparent"></div>
+										</div>
+
+										<div className="mb-8">
+											<Icon className="w-10 h-10 text-brand-orange mb-4" strokeWidth={1.5} />
+											<h3 className="text-4xl font-bold mb-4 text-industrial-900">
+												{service.title}
+											</h3>
+											<p className="text-lg text-brand-orange font-medium mb-6">
+												{service.tagline}
+											</p>
+										</div>
+
+										<p className="text-lg leading-relaxed text-industrial-600 mb-10">
+											{service.description}
+										</p>
+
+										{/* Deliverables */}
+										<div className="bg-white border border-industrial-200 p-6">
+											<span className="mono-label block mb-4">Key Deliverables</span>
+											<div className="grid grid-cols-2 gap-3">
+												{service.deliverables.map((item, i) => (
+													<div key={i} className="flex items-start text-sm text-industrial-700">
+														<span className="w-1 h-1 bg-brand-orange mt-2 mr-3 flex-shrink-0"></span>
+														<span>{item}</span>
+													</div>
+												))}
+											</div>
+										</div>
+									</div>
+								</div>
+
+								{/* Capabilities column */}
+								<div className={`lg:col-span-5 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+									<div className="space-y-6 lg:pt-32"
+									>
+										<span className="mono-label block mb-6">Technical Capabilities</span>
+										{service.capabilities.map((cap, i) => (
+											<div key={i} className="border-l-2 border-industrial-200 pl-6 pb-6">
+												<h4 className="font-bold text-industrial-900 mb-2">{cap.label}</h4>
+												<p className="text-sm text-industrial-600 leading-relaxed">
+													{cap.detail}
+												</p>
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				);
+			})}
+
+			{/* Process timeline */}
+			<div className="section-padding bg-industrial-900 text-white">
+				<div className="container-editorial">
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true, margin: "-100px" }}
+						transition={{ duration: 0.8 }}
+					>
+						<span className="mono-label mb-8 block text-white/60">Implementation Methodology</span>
+						<h3 className="text-3xl font-bold mb-16 max-w-2xl">
+							Systematic Engineering Workflow
+						</h3>
+
+						<div className="grid md:grid-cols-4 gap-8">
+							{processSteps.map((step, i) => (
+								<motion.div
+									key={step.phase}
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									viewport={{ once: true }}
+									transition={{ duration: 0.6, delay: i * 0.1 }}
+								>
+									<div className="font-mono text-5xl font-bold text-brand-orange/40 mb-4">
+										0{i + 1}
+									</div>
+									<h4 className="text-xl font-bold mb-3">{step.phase}</h4>
+									<p className="text-sm text-white/70 leading-relaxed">
+										{step.detail}
+									</p>
+								</motion.div>
+							))}
+						</div>
+					</motion.div>
+				</div>
+			</div>
+		</section>
+	);
+}

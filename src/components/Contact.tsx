@@ -1,284 +1,169 @@
-"use client";
+import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
-import React, { useState } from "react";
-import emailjs from "emailjs-com";
-import { Mail, Phone, MapPin, Clock, Send, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+export default function Contact() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: "-100px" });
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		company: '',
+		message: ''
+	});
 
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		console.log('Form submitted:', formData);
+		// Handle form submission
+	};
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+	return (
+		<section id="contact" className="section-padding bg-white relative">
+			{/* Orange accent line top */}
+			<div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-orange to-transparent opacity-40"></div>
 
-    emailjs
-      .send(
-        "service_a05hkyc",
-        "template_6zl7g86",
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          company: formData.company,
-          message: formData.message,
-        },
-        "eLfz-sUXOthVyqeyG"
-      )
-      .then(() => {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", company: "", message: "" });
-      })
-      .catch((error) => {
-        console.error("EmailJS error:", error);
-        setSubmitStatus("error");
-      })
-      .finally(() => setIsSubmitting(false));
-  };
+			<div className="container-wide" ref={ref}>
+				<div className="grid lg:grid-cols-2 gap-16">
+					{/* Left: Form */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={isInView ? { opacity: 1, y: 0 } : {}}
+						transition={{ duration: 0.6 }}
+					>
+						<span className="mono-label mb-4 block">Get In Touch</span>
+						<h2 className="mb-6">Request Technical Consultation</h2>
+						<div className="orange-line mb-8"></div>
+						<p className="text-lg text-industrial-600 leading-relaxed mb-12">
+							Contact our engineering team for project consultations, technical specifications, 
+							or system design requirements.
+						</p>
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Our Location",
-      content: "Shop No-02, Bajarang Complex, Near Prime Hotel, Morarji Circle Road, Gunjan, Vapi. India - 396195",
-      link: "https://maps.app.goo.gl/Sdpbb3MV3jwyxN238"
-    },
-    {
-      icon: Phone,
-      title: "Phone Number",
-      content: "+91 70967 99555",
-      link: "tel:+917096799555"
-    },
-    {
-      icon: Mail,
-      title: "Email Address",
-      content: "info@vkautomationandcontrol.in",
-      link: "mailto:info@vkautomationandcontrol.in"
-    },
-    {
-      icon: Clock,
-      title: "Business Hours",
-      content: "Mon - Sat: 9:00 AM - 6:00 PM",
-      link: null
-    }
-  ];
+						<form onSubmit={handleSubmit} className="space-y-8">
+							<div>
+								<input
+									type="text"
+									name="name"
+									value={formData.name}
+									onChange={handleChange}
+									placeholder="Name"
+									required
+									className="w-full pb-3 text-industrial-900 placeholder:text-industrial-400"
+								/>
+							</div>
 
-  return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-              Get In Touch With VK Automation
-            </span>
-          </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Have a question about <strong>PLC programming</strong>, <strong>SCADA development</strong>, <strong>HMI panel design</strong>, or need a quote for <strong>industrial automation solutions</strong>? We're here to help you with your automation needs. Contact VK Automation And Control in Vapi, Gujarat for professional automation consulting, system integration, and 24/7 technical support.
-          </p>
-        </div>
+							<div>
+								<input
+									type="email"
+									name="email"
+									value={formData.email}
+									onChange={handleChange}
+									placeholder="Email Address"
+									required
+									className="w-full pb-3 text-industrial-900 placeholder:text-industrial-400"
+								/>
+							</div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-orange-500/20">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => {
-                  const IconComponent = info.icon;
-                  return (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-lg flex items-center justify-center">
-                          <IconComponent className="w-6 h-6 text-orange-500" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{info.title}</h4>
-                        {info.link ? (
-                          <a 
-                            href={info.link}
-                            className="text-gray-600 hover:text-orange-500 transition-colors"
-                          >
-                            {info.content}
-                          </a>
-                        ) : (
-                          <p className="text-gray-600">{info.content}</p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+							<div>
+								<input
+									type="text"
+									name="company"
+									value={formData.company}
+									onChange={handleChange}
+									placeholder="Company"
+									className="w-full pb-3 text-industrial-900 placeholder:text-industrial-400"
+								/>
+							</div>
 
-              {/* Social Media Links */}
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Connect With Us</h4>
-                <div className="flex space-x-4">
-                  <a
-                    href="https://wa.me/message/H3XPDIMPNLRZL1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center text-white hover:from-green-600 hover:to-emerald-700 transition-all duration-300 hover:scale-110 shadow-md"
-                    aria-label="WhatsApp"
-                  >
-                    <SiWhatsapp className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:scale-110 shadow-md"
-                    aria-label="Facebook"
-                  >
-                    <Facebook className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-300 hover:scale-110 shadow-md"
-                    aria-label="Twitter"
-                  >
-                    <Twitter className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-110 shadow-md"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 hover:scale-110 shadow-md"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
+							<div>
+								<textarea
+									name="message"
+									value={formData.message}
+									onChange={handleChange}
+									placeholder="Project Requirements"
+									required
+									rows={6}
+									className="w-full pb-3 text-industrial-900 placeholder:text-industrial-400 resize-none"
+								/>
+							</div>
 
-              {/* Google Maps Embed */}
-              <div className="mt-8 rounded-lg overflow-hidden shadow-md">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.3!2d72.9!3d20.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDI0JzAwLjAiTiA3MsKwNTQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
-                  width="100%"
-                  height="250"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="VK Automation Location - Vapi"
-                ></iframe>
-              </div>
-            </div>
-          </div>
+							<button
+								type="submit"
+								className="inline-flex items-center space-x-3 border-2 border-brand-orange bg-brand-orange text-white hover:bg-orange-dark hover:border-orange-dark px-8 py-3 text-sm font-medium uppercase tracking-wide transition-all duration-300"
+							>
+								<span>Submit Request</span>
+								<Send size={18} />
+							</button>
+						</form>
+					</motion.div>
 
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-orange-500/20">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="john@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                  Company Name
-                </label>
-                <input
-                  id="company"
-                  type="text"
-                  name="company"
-                  placeholder="Your Company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell us about your automation needs..."
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all resize-none"
-                  required
-                />
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                {!isSubmitting && <Send className="w-5 h-5" />}
-              </button>
-            </form>
+					{/* Right: Contact info */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={isInView ? { opacity: 1, y: 0 } : {}}
+						transition={{ duration: 0.6, delay: 0.2 }}
+						className="lg:pl-12"
+					>
+						<div className="bg-industrial-50 p-12 border border-industrial-200">
+							<h3 className="text-2xl font-bold mb-8 text-industrial-900">Contact Information</h3>
 
-            {submitStatus === "success" && (
-              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-700 font-medium flex items-center">
-                  <span className="mr-2">✅</span> Message sent successfully! We'll get back to you soon.
-                </p>
-              </div>
-            )}
-            {submitStatus === "error" && (
-              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-700 font-medium flex items-center">
-                  <span className="mr-2">❌</span> Failed to send message. Please try again or contact us directly.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+							<div className="space-y-8">
+								<div className="flex items-start space-x-4">
+									<div className="p-3 bg-white border border-industrial-200">
+										<Mail className="w-5 h-5 text-brand-orange" />
+									</div>
+									<div>
+										<div className="mono-label mb-2">Email</div>
+										<a href="mailto:info@vkauto.com" className="text-industrial-900 hover:text-brand-orange">
+											info@vkauto.com
+										</a>
+									</div>
+								</div>
 
-export default Contact;
+								<div className="flex items-start space-x-4">
+									<div className="p-3 bg-white border border-industrial-200">
+										<Phone className="w-5 h-5 text-brand-orange" />
+									</div>
+									<div>
+										<div className="mono-label mb-2">Phone</div>
+										<a href="tel:+1234567890" className="text-industrial-900 hover:text-brand-orange">
+											+1 (234) 567-890
+										</a>
+										<div className="text-sm text-industrial-600 mt-1">24/7 Emergency Support</div>
+									</div>
+								</div>
+
+								<div className="flex items-start space-x-4">
+									<div className="p-3 bg-white border border-industrial-200">
+										<MapPin className="w-5 h-5 text-brand-orange" />
+									</div>
+									<div>
+										<div className="mono-label mb-2">Address</div>
+										<address className="not-italic text-industrial-900">
+											1234 Industrial Parkway<br />
+											Suite 500<br />
+											Manufacturing City, ST 12345
+										</address>
+									</div>
+								</div>
+							</div>
+
+							<div className="mt-12 pt-8 border-t border-industrial-200">
+								<div className="mono-label mb-3">Business Hours</div>
+								<div className="text-sm text-industrial-700 space-y-1">
+									<div>Monday - Friday: 8:00 AM - 6:00 PM</div>
+									<div>Saturday: 9:00 AM - 2:00 PM</div>
+									<div className="text-brand-orange font-medium">Emergency Support: 24/7</div>
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				</div>
+			</div>
+		</section>
+	);
+}

@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Wrench, LineChart, Phone } from 'lucide-react';
+import { Wrench, LineChart, Phone, Zap, TrendingUp, Headset } from 'lucide-react';
 
 export default function Services() {
 	const ref = useRef(null);
@@ -157,14 +157,45 @@ export default function Services() {
 									</div>
 								</div>
 
-								{/* Capabilities column */}
+								{/* Capabilities &  Image column */}
 								<div className={`lg:col-span-5 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-									<div className="space-y-6 lg:pt-32"
+									{/* Image with abstract technical visualization */}
+									<motion.div
+										initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+										whileInView={{ opacity: 1, x: 0 }}
+										viewport={{ once: true, margin: "-150px" }}
+										transition={{ duration: 1, delay: 0.2 }}
+										className="relative aspect-[4/5] bg-gradient-to-br from-industrial-50 to-industrial-100 border border-industrial-200 rounded-lg overflow-hidden mb-8 flex items-center justify-center"
 									>
-										<span className="mono-label block mb-6">Technical Capabilities</span>
+										{/* Animated technical background */}
+										<div className="absolute inset-0 opacity-30">
+											<svg viewBox="0 0 400 500" className="w-full h-full">
+												<defs>
+													<pattern id={`grid-${index}`} width="40" height="40" patternUnits="userSpaceOnUse">
+														<path d={`M 40 0 L 0 0 0 40`} fill="none" stroke="#E67E22" strokeWidth="0.5"/>
+													</pattern>
+												</defs>
+												<rect width="400" height="500" fill={`url(#grid-${index})`} />
+											</svg>
+										</div>
+
+										{/* Icon representation */}
+										<div className="relative z-10 text-center">
+											<div className="inline-block p-8 bg-white/80 backdrop-blur-sm rounded-full mb-6">
+												<Icon className="w-16 h-16 text-brand-orange" strokeWidth={1.2} />
+											</div>
+											<p className="font-mono text-sm text-industrial-600 font-semibold">
+												{service.title}
+											</p>
+										</div>
+									</motion.div>
+
+									{/* Capabilities list */}
+									<div className="space-y-6">
+										<span className="mono-label block">Technical Capabilities</span>
 										{service.capabilities.map((cap, i) => (
-											<div key={i} className="border-l-2 border-industrial-200 pl-6 pb-6">
-												<h4 className="font-bold text-industrial-900 mb-2">{cap.label}</h4>
+											<div key={i} className="border-l-2 border-industrial-200 pl-6 pb-4">
+												<h4 className="font-bold text-industrial-900 mb-2 text-sm">{cap.label}</h4>
 												<p className="text-sm text-industrial-600 leading-relaxed">
 													{cap.detail}
 												</p>

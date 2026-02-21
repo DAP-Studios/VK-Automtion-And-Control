@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -6,66 +6,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ProductsGrid() {
 	const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+	const [flipped, setFlipped] = useState<{[key: number]: boolean}>({});
+
+	const toggleFlip = (id: number) => {
+		setFlipped(prev => ({
+			...prev,
+			[id]: !prev[id]
+		}));
+	};
 
 	useEffect(() => {
-		// Stagger animation for product cards
+		// Stagger animation for product cards on load
 		if (cardsRef.current.length > 0) {
 			gsap.from(cardsRef.current, {
 				scrollTrigger: {
 					trigger: cardsRef.current[0],
 					start: 'top 80%',
 				},
-				y: 100,
+				y: 50,
 				opacity: 0,
-				rotation: 5,
 				stagger: 0.1,
-				duration: 0.8,
-				ease: 'back.out(1.2)'
+				duration: 0.6,
+				ease: 'power2.out'
 			});
 		}
-
-		// Add magnetic hover effect to cards
-		cardsRef.current.forEach(card => {
-			if (!card) return;
-
-			const handleMouseMove = (e: MouseEvent) => {
-				const rect = card.getBoundingClientRect();
-				const x = e.clientX - rect.left - rect.width / 2;
-				const y = e.clientY - rect.top - rect.height / 2;
-
-				gsap.to(card, {
-					x: x * 0.1,
-					y: y * 0.1,
-					rotationY: x * 0.05,
-					rotationX: -y * 0.05,
-					duration: 0.5,
-					ease: 'power2.out',
-					transformPerspective: 1000
-				});
-			};
-
-			const handleMouseLeave = () => {
-				gsap.to(card, {
-					x: 0,
-					y: 0,
-					rotationY: 0,
-					rotationX: 0,
-					duration: 0.5,
-					ease: 'power2.out'
-				});
-			};
-
-			card.addEventListener('mousemove', handleMouseMove);
-			card.addEventListener('mouseleave', handleMouseLeave);
-
-			return () => {
-				card.removeEventListener('mousemove', handleMouseMove);
-				card.removeEventListener('mouseleave', handleMouseLeave);
-			};
-		});
 	}, []);
 
-	const products = [
+		const products = [
 		{
 			id: 1,
 			model: 'PLC-500 Series',
@@ -73,6 +40,7 @@ export default function ProductsGrid() {
 			tagline: 'Mission-critical process control',
 			description: 'Industrial-grade PLCs engineered for 24/7 operation in demanding manufacturing environments.',
 			icon: '🎛️',
+			image: 'https://via.placeholder.com/400x300?text=PLC+Controller+System',
 			color: 'from-blue-500 to-blue-600',
 			specs: [
 				{ label: 'I/O Capacity', value: 'Up to 2048 points' },
@@ -88,6 +56,7 @@ export default function ProductsGrid() {
 			tagline: 'Sunlight-readable touchscreens',
 			description: 'High-resolution operator panels with capacitive multi-touch technology and 1000 cd/m² brightness.',
 			icon: '📱',
+			image: 'https://via.placeholder.com/400x300?text=HMI+Touch+Display',
 			color: 'from-orange-500 to-red-600',
 			specs: [
 				{ label: 'Display Sizes', value: '7" to 21.5"' },
@@ -103,6 +72,7 @@ export default function ProductsGrid() {
 			tagline: 'High-efficiency motor control',
 			description: 'Precision motor control from 0.75kW to 630kW with sensorless vector control.',
 			icon: '⚡',
+			image: 'https://via.placeholder.com/400x300?text=VFD+Drive+System',
 			color: 'from-yellow-500 to-orange-600',
 			specs: [
 				{ label: 'Power Range', value: '0.75kW-630kW' },
@@ -118,6 +88,7 @@ export default function ProductsGrid() {
 			tagline: 'SIL 3 / PLe certified',
 			description: 'Safety-rated controllers with redundant processing and self-diagnostics.',
 			icon: '🛡️',
+			image: 'https://via.placeholder.com/400x300?text=Safety+Controller',
 			color: 'from-red-500 to-pink-600',
 			specs: [
 				{ label: 'Safety Rating', value: 'SIL 3 / PLe' },
@@ -133,6 +104,7 @@ export default function ProductsGrid() {
 			tagline: 'Multi-protocol gateway',
 			description: 'Universal gateway supporting Ethernet/IP, Profinet, Modbus TCP, and MQTT.',
 			icon: '🌐',
+			image: 'https://via.placeholder.com/400x300?text=Network+Module',
 			color: 'from-green-500 to-emerald-600',
 			specs: [
 				{ label: 'Protocols', value: '4+ protocols' },
@@ -148,6 +120,7 @@ export default function ProductsGrid() {
 			tagline: 'Redundant power systems',
 			description: 'Reliable power delivery with redundancy support and wide input range.',
 			icon: '🔋',
+			image: 'https://via.placeholder.com/400x300?text=Power+Supply+Unit',
 			color: 'from-purple-500 to-indigo-600',
 			specs: [
 				{ label: 'Output Power', value: '1200W @ 24VDC' },
@@ -174,72 +147,108 @@ export default function ProductsGrid() {
 				</div>
 
 				{/* Products Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{products.map((product, index) => (
-						<div
-							key={product.id}
-							ref={(el) => (cardsRef.current[index] = el)}
-							className="group"
-							style={{ transformStyle: 'preserve-3d' }}
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{products.map((product, index) => (
+					<div
+						key={product.id}
+						ref={(el) => (cardsRef.current[index] = el)}
+						className="h-80 cursor-pointer perspective"
+						onClick={() => toggleFlip(product.id)}
+						onMouseLeave={() => window.innerWidth < 768 && setFlipped(prev => ({...prev, [product.id]: false}))}
+					>
+						{/* Flip Card Container */}
+						<div 
+							className="relative w-full h-full transition-transform duration-500 ease-out"
+							style={{
+								transformStyle: 'preserve-3d',
+								transform: flipped[product.id] ? 'rotateY(180deg)' : 'rotateY(0deg)'
+							}}
 						>
-							<div className="h-full flex flex-col bg-white border border-industrial-200 hover:border-brand-orange transition-all duration-300 rounded-lg overflow-hidden hover:shadow-2xl">
-								{/* Visual Header with gradient */}
-								<div className={`bg-gradient-to-br ${product.color} p-8 text-white relative h-32 flex items-center justify-center overflow-hidden`}>
-									<div className="text-6xl opacity-10 absolute top-0 right-0 group-hover:scale-110 transition-transform duration-300">{product.icon}</div>
-									<div className="text-5xl relative z-10 group-hover:scale-125 transition-transform duration-300">{product.icon}</div>
+							{/* Front - Image & Name */}
+							<div 
+								className="absolute w-full h-full bg-white border-2 border-industrial-200 hover:border-brand-orange rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+								style={{ backfaceVisibility: 'hidden' }}
+							>
+								{/* Image Container */}
+								<div className={`relative w-full h-3/4 bg-gradient-to-br ${product.color} overflow-hidden flex items-center justify-center`}>
+									{product.image ? (
+										<>
+											<img 
+												src={product.image} 
+												alt={product.model}
+												className="w-full h-full object-cover"
+											/>
+											<div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+										</>
+									) : (
+										<div className="text-6xl opacity-20">{product.icon}</div>
+									)}
 								</div>
 
-								{/* Content */}
-								<div className="flex-1 p-6 flex flex-col">
-									{/* Category Badge */}
-									<span className="inline-block mono-label text-xs mb-2 px-3 py-1 bg-industrial-50 border border-industrial-200 rounded w-fit">
-										{product.category}
-									</span>
+								{/* Name Section */}
+								<div className="flex flex-col justify-center items-center h-1/4 p-4 bg-white border-t-2 border-industrial-100">
+									<p className="text-xs mono-label text-industrial-500 mb-1 uppercase tracking-wide">{product.category}</p>
+									<h3 className="text-lg font-bold text-industrial-900 text-center">{product.model}</h3>
+								</div>
 
-									{/* Model Name */}
-									<h3 className="text-xl font-bold text-industrial-900 mb-2">
-										{product.model}
-									</h3>
+								{/* Flip Indicator */}
+								<div className="absolute bottom-2 right-2 text-xs text-industrial-400 opacity-60 hover:opacity-100 transition-opacity">
+									<span className="hidden md:inline">Hover to flip</span>
+									<span className="md:hidden">Tap to flip</span>
+								</div>
+							</div>
 
-									{/* Tagline */}
-									<p className="text-sm text-brand-orange font-medium mb-3">
-										{product.tagline}
-									</p>
+							{/* Back - Details */}
+							<div 
+								className="absolute w-full h-full bg-industrial-900 border-2 border-brand-orange rounded-lg shadow-lg p-6 flex flex-col overflow-y-auto"
+								style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+							>
+								{/* Tagline */}
+								<p className="text-sm text-brand-orange font-medium mb-4 leading-relaxed">
+									{product.tagline}
+								</p>
 
-									{/* Description */}
-									<p className="text-sm text-industrial-600 mb-4 leading-relaxed">
-										{product.description}
-									</p>
+								{/* Description */}
+								<p className="text-xs text-industrial-300 mb-4 leading-relaxed">
+									{product.description}
+								</p>
 
-									{/* Quick Specs */}
-									<div className="space-y-2 mb-4">
-										{product.specs.map((spec, i) => (
-											<div key={i} className="flex justify-between text-xs py-1 border-t border-industrial-100">
-												<span className="font-medium text-industrial-600">{spec.label}:</span>
-												<span className="font-mono text-industrial-900">{spec.value}</span>
-											</div>
+								{/* Quick Specs */}
+								<div className="mb-4 pb-4 border-b border-industrial-700">
+									<p className="text-xs font-bold text-industrial-400 uppercase mb-2">Specs:</p>
+									{product.specs.slice(0, 3).map((spec, i) => (
+										<div key={i} className="flex justify-between text-xs py-1">
+											<span className="text-industrial-400">{spec.label}:</span>
+											<span className="font-mono text-brand-orange">{spec.value}</span>
+										</div>
+									))}
+								</div>
+
+								{/* Applications */}
+								<div>
+									<p className="text-xs font-bold text-industrial-400 uppercase mb-2">Applications:</p>
+									<div className="flex flex-wrap gap-1">
+										{product.applications.slice(0, 3).map((app, i) => (
+											<span key={i} className="text-xs px-2 py-1 bg-brand-orange/20 text-brand-orange rounded">
+												{app}
+											</span>
 										))}
 									</div>
+								</div>
 
-									{/* Applications */}
-									<div className="space-y-2">
-										<p className="text-xs font-bold text-industrial-700 uppercase">Applications:</p>
-										<div className="flex flex-wrap gap-1">
-											{product.applications.map((app, i) => (
-												<span key={i} className="text-xs px-2 py-1 bg-brand-orange/10 text-brand-orange rounded">
-													{app}
-												</span>
-											))}
-										</div>
-									</div>
+								{/* Flip Back Indicator */}
+								<div className="text-xs text-industrial-500 mt-auto pt-2 text-center opacity-60">
+									<span className="hidden md:inline">Click to flip back</span>
+									<span className="md:hidden">Tap to flip back</span>
 								</div>
 							</div>
 						</div>
-					))}
-				</div>
+					</div>
+				))}
+			</div>
 
-				{/* CTA Section */}
-				<div className="mt-20 bg-gradient-to-r from-industrial-900 to-industrial-800 rounded-lg p-12 text-center text-white">
+			{/* CTA Section */}
+			<div className="mt-20 bg-gradient-to-r from-industrial-900 to-industrial-800 rounded-lg p-12 text-center text-white">
 					<h3 className="text-3xl font-bold mb-4">Need Complete Specifications?</h3>
 					<p className="text-lg text-industrial-300 mb-8 max-w-2xl mx-auto">
 						Request detailed technical documentation, CAD models, and integration guidelines for any product.

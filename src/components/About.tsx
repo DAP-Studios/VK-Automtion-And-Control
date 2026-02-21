@@ -88,8 +88,8 @@ export default function About() {
 							</motion.div>
 						</div>
 
-						{/* Right: Key capabilities */}
-						<div className="lg:col-span-4">
+						{/* Right: Key capabilities + Image */}
+						<div className="lg:col-span-4 space-y-8">
 							<motion.div
 								initial={{ opacity: 0, x: 20 }}
 								animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -114,10 +114,41 @@ export default function About() {
 											className="flex items-start"
 										>
 											<span className="w-1 h-1 bg-brand-orange mt-2.5 mr-3 flex-shrink-0"></span>
-											<span>{item}</span>
+											<span className="text-sm">{item}</span>
 										</motion.li>
 									))}
 								</ul>
+							</motion.div>
+
+							{/* Company facilities visualization */}
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								animate={isInView ? { opacity: 1, y: 0 } : {}}
+								transition={{ duration: 0.8, delay: 0.5 }}
+								className="relative aspect-square bg-gradient-to-br from-industrial-50 to-industrial-100 border border-industrial-200 rounded-lg overflow-hidden flex items-center justify-center"
+							>
+								{/* Abstract facilities graphic */}
+								<svg viewBox="0 0 400 400" className="w-full h-full opacity-[0.15] absolute inset-0">
+									<g stroke="#E67E22" strokeWidth="2" fill="none">
+										{/* Building blocks */}
+										<rect x="50" y="50" width="150" height="200" />
+										<rect x="200" y="100" width="150" height="150" />
+										<rect x="100" y="300" width="200" height="80" />
+										{/* Antennas/equipment */}
+										<line x1="130" y1="50" x2="130" y2="20" />
+										<line x1="280" y1="100" x2="280" y2="30" />
+										{/* Internal divisions */}
+										<line x1="50" y1="150" x2="200" y2="150" />
+										<line x1="125" y1="50" x2="125" y2="250" />
+										<circle cx="280" cy="175" r="30" />
+									</g>
+								</svg>
+								<div className="relative z-10 text-center">
+									<p className="font-mono text-xs text-industrial-600 font-semibold uppercase tracking-wider">
+										Vapi, Gujarat
+									</p>
+									<p className="text-sm text-industrial-500 mt-2">Industrial Facility</p>
+								</div>
 							</motion.div>
 						</div>
 					</div>

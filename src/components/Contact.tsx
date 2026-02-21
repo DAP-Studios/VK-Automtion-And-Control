@@ -144,9 +144,9 @@ export default function Contact() {
 									<div>
 										<div className="mono-label mb-2">Address</div>
 										<address className="not-italic text-industrial-900">
-											1234 Industrial Parkway<br />
-											Suite 500<br />
-											Manufacturing City, ST 12345
+											Ground Floor, Shop No 2, Bajrang Complex<br />
+											Vapi Prime Hotel, Char Rasta<br />
+											Vapi, Valsad-396195, Gujarat, India
 										</address>
 									</div>
 								</div>

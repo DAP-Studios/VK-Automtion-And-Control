@@ -46,21 +46,22 @@ export default function Footer() {
 						<div className="space-y-3 text-sm">
 							<div className="flex items-start space-x-3">
 								<Mail className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
-								<a href="mailto:info@vkauto.com" className="hover:text-brand-orange transition-colors">
-									info@vkauto.com
+								<a href="mailto:info.vkautomationadncontrol@gmail.com" className="hover:text-brand-orange transition-colors">
+									info.vkautomationadncontrol@gmail.com
 								</a>
 							</div>
 							<div className="flex items-start space-x-3">
 								<Phone className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
-								<a href="tel:+1234567890" className="hover:text-brand-orange transition-colors">
-									+1 (234) 567-890
+								<a href="tel:+917949338324" className="hover:text-brand-orange transition-colors">
+									+91 7949338324 
 								</a>
 							</div>
 							<div className="flex items-start space-x-3">
 								<MapPin className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
 								<address className="not-italic">
-									1234 Industrial Parkway<br />
-									Manufacturing City, ST 12345
+								Ground Floor, Shop No 2, Bajrang Complex<br />
+								Vapi Prime Hotel, Char Rasta<br />
+								Vapi, Valsad-396195, Gujarat, India
 								</address>
 							</div>
 						</div>

@@ -2,6 +2,28 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/logo.png';
+
+// ── Glowing bar component ────────────────────────────────────────────────────
+function GlowingNavBar() {
+  return (
+    <motion.div
+      className="fixed top-0 left-10 right-5 h-1 bg-gradient-to-r from-transparent via-orange-400 to-transparent z-50"
+      style={{
+        boxShadow: '0 0 40px rgba(249, 115, 22, 1), 0 0 80px rgba(249, 115, 22, 0.6), 0 0 120px rgba(249, 115, 22, 0.3)',
+      }}
+      animate={{
+        width: ['0%', '100%', '0%'],
+        opacity: [0.2, 1, 0.2],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      }}
+    />
+  );
+}
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -19,27 +41,30 @@ export default function Header() {
 	 const navItems = [
 		 { label: 'Home', href: '/' },
 		 { label: 'Products', href: '/products' },
-		 { label: 'Industries', href: '/industries' },
 		 { label: 'Services', href: '/services' },
 		 { label: 'Clients', href: '/clients' },
 		 { label: 'Contact', href: '/contact' },
 	 ];
 
 	return (
-		<header
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-				scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
-			}`}
-		>
+		<>
+			<GlowingNavBar />
+			<header
+				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+					scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+				}`}
+			>
 			<div className="container-wide">
 				<div className="flex items-center justify-between h-20">
 					 {/* Logo */}
-					 <Link to="/" className="flex items-center space-x-3">
-						 <span className="text-2xl font-bold text-industrial-900">VK<span className="text-brand-orange">|</span>AUTOMAION AND CONTROL</span>
+					 <Link to="/" className="flex items-center">
+					 <img src={logo} alt="VK Automation and Control" className="h-10 md:h-12 w-auto" />
+					 	<span className="ml-2 text-lg md:text-xl font-bold text-orange-700">VK</span>
+						<span className="text-brand-orange">|Automation and Control</span>
 					 </Link>
-
 					 {/* Desktop Navigation */}
-					 <nav className="hidden md:flex items-center space-x-8">
+					 <nav className="hidden md:flex items-center space-x-8 relative pt-2">
+
 						 {navItems.map((item) => {
 							 const isActive = location.pathname === item.href;
 							 return (
@@ -49,7 +74,7 @@ export default function Header() {
 									 className={`relative text-sm font-medium transition-colors duration-200 group ${
 										 isActive
 											 ? 'text-brand-orange'
-											 : 'text-industrial-700 hover:text-brand-orange'
+											 : 'text-industrial-400 hover:text-brand-orange'
 									 }`}
 								 >
 									 {item.label}
@@ -104,6 +129,7 @@ export default function Header() {
 				)}
 			</AnimatePresence>
 		</header>
+		</>
 	);
 }
 

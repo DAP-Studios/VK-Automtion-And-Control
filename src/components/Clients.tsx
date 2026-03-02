@@ -26,11 +26,11 @@ export default function Clients() {
 					className="max-w-3xl mb-16"
 				>
 					<span className="mono-label mb-4 block">Technology Partners</span>
-					<h2 className="mb-6">Certified Integration Partners</h2>
+					<h2 className="mb-6">Certified Technology Partners</h2>
 					<div className="orange-line mb-6"></div>
 					<p className="text-lg text-industrial-600 leading-relaxed">
-						We maintain technical partnerships and certifications with leading automation technology 
-						manufacturers, ensuring access to the latest products and technical support resources.
+						Certified partnerships with leading automation manufacturers for faster support
+						and proven integration paths.
 					</p>
 				</motion.div>
 

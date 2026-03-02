@@ -36,11 +36,10 @@ export default function Contact() {
 						transition={{ duration: 0.6 }}
 					>
 						<span className="mono-label mb-4 block">Get In Touch</span>
-						<h2 className="mb-6">Request Technical Consultation</h2>
+						<h2 className="mb-6">Start a Technical Consultation</h2>
 						<div className="orange-line mb-8"></div>
 						<p className="text-lg text-industrial-600 leading-relaxed mb-12">
-							Contact our engineering team for project consultations, technical specifications, 
-							or system design requirements.
+							Share your requirements and get clear next steps from our engineering team.
 						</p>
 
 						<form onSubmit={handleSubmit} className="space-y-8">

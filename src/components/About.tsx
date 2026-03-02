@@ -1,6 +1,18 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
+// Import partner logos
+import siemensLogo from '../assets/partners/siemens.png';
+import allenBradleyLogo from '../assets/partners/allenbradley.png';
+import schneiderLogo from '../assets/partners/schneider.png';
+import abbLogo from '../assets/partners/abb.png';
+import mitsubishiLogo from '../assets/partners/mitsubishi.png';
+import omronLogo from '../assets/partners/omron.png';
+import deltaLogo from '../assets/partners/delta.png';
+import invtLogo from '../assets/partners/invt.png';
+import weconLogo from '../assets/partners/wecon.png';
+import wintechLogo from '../assets/partners/wintech.png';
+
 export default function About() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -15,36 +27,38 @@ export default function About() {
 		{ year: '2024', milestone: '500+ automation systems deployed across industries' }
 	];
 
+	const partners = [
+		{ name: 'Siemens', logo: siemensLogo },
+		{ name: 'Allen-Bradley', logo: allenBradleyLogo },
+		{ name: 'Schneider Electric', logo: schneiderLogo },
+		{ name: 'ABB', logo: abbLogo },
+		{ name: 'Mitsubishi', logo: mitsubishiLogo },
+		{ name: 'Omron', logo: omronLogo },
+		{ name: 'Delta', logo: deltaLogo },
+		{ name: 'INVT', logo: invtLogo },
+		{ name: 'Wecon', logo: weconLogo },
+		{ name: 'Wintech', logo: wintechLogo }
+	];
+
 	return (
 		<section id="about" className="relative bg-white">
+			<style>{`
+				@keyframes scrollInfinite {
+					0% { transform: translateX(0); }
+					100% { transform: translateX(-50%); }
+				}
+				.animate-scroll-infinite {
+					display: flex;
+					width: max-content;
+					animation: scrollInfinite 28s linear infinite;
+				}
+				.animate-scroll-infinite:hover {
+					animation-play-state: paused;
+				}
+			`}</style>
 			{/* Company story - editorial layout */}
-			<div className="section-padding">
+			<div className="section-padding !pt-0">
 				<div className="container-editorial" ref={ref}>
-					{/* Header with offset orange line */}
-					<div className="grid lg:grid-cols-12 gap-16 mb-20">
-						<div className="lg:col-span-1 hidden lg:block">
-							<motion.div
-								initial={{ scaleY: 0 }}
-								animate={isInView ? { scaleY: 1 } : {}}
-								transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-								className="orange-line-vertical origin-top"
-							/>
-						</div>
-						
-						<div className="lg:col-span-11">
-							<motion.div
-								initial={{ opacity: 0, y: 30 }}
-								animate={isInView ? { opacity: 1, y: 0 } : {}}
-								transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-							>
-								<span className="mono-label mb-6 block">Company Overview</span>
-								<h2 className="mb-12 max-w-4xl">
-									Building Industrial Control Systems
-									<span className="text-brand-orange"> That Engineers Trust</span>
-								</h2>
-							</motion.div>
-						</div>
-					</div>
 
 					{/* Story content - asymmetrical columns */}
 					<div className="grid lg:grid-cols-12 gap-y-12 lg:gap-16">
@@ -69,21 +83,17 @@ export default function About() {
 								className="space-y-6 text-lg leading-relaxed text-industrial-600"
 							>
 								<p className="text-xl leading-relaxed text-industrial-700">
-									VK Automation specializes in industrial control systems engineered for 
-									reliability, performance, and long-term maintainability in demanding 
-									manufacturing and process environments.
+									VK Automation builds control systems for reliable, safe operation
+									in demanding manufacturing and process environments.
 								</p>
 								<p>
-									Our approach begins with systematic analysis of process requirements and 
-									operational constraints. We design programmable logic controller architectures, 
-									variable frequency drive configurations, and human-machine interfaces that 
-									prioritize operational transparency and diagnostic accessibility.
+									We start with requirements and constraints, then design PLC architectures,
+									VFD strategies, and HMI/SCADA interfaces that keep operations transparent
+									and diagnosable.
 								</p>
 								<p>
-									Every control system we deliver is documented to IEC 61131-3 standards with 
-									complete electrical schematics, network topology diagrams, and commissioning 
-									procedures. This engineering discipline ensures systems remain supportable 
-									throughout their operational lifetime.
+									Every system ships with IEC 61131-3 documentation, schematics, network
+									topology, and commissioning procedures to keep it supportable long term.
 								</p>
 							</motion.div>
 						</div>
@@ -121,23 +131,23 @@ export default function About() {
 							</motion.div>
 
 							{/* Company facilities visualization */}
-							<motion.div
+							{/* <motion.div
 								initial={{ opacity: 0, y: 20 }}
 								animate={isInView ? { opacity: 1, y: 0 } : {}}
 								transition={{ duration: 0.8, delay: 0.5 }}
 								className="relative aspect-square bg-gradient-to-br from-industrial-50 to-industrial-100 border border-industrial-200 rounded-lg overflow-hidden flex items-center justify-center"
 							>
-								{/* Abstract facilities graphic */}
+								{/* Abstract facilities graphic 
 								<svg viewBox="0 0 400 400" className="w-full h-full opacity-[0.15] absolute inset-0">
 									<g stroke="#E67E22" strokeWidth="2" fill="none">
-										{/* Building blocks */}
+										{/* Building blocks 
 										<rect x="50" y="50" width="150" height="200" />
 										<rect x="200" y="100" width="150" height="150" />
 										<rect x="100" y="300" width="200" height="80" />
-										{/* Antennas/equipment */}
+										{/* Antennas/equipment 
 										<line x1="130" y1="50" x2="130" y2="20" />
 										<line x1="280" y1="100" x2="280" y2="30" />
-										{/* Internal divisions */}
+										{/* Internal divisions 
 										<line x1="50" y1="150" x2="200" y2="150" />
 										<line x1="125" y1="50" x2="125" y2="250" />
 										<circle cx="280" cy="175" r="30" />
@@ -149,7 +159,47 @@ export default function About() {
 									</p>
 									<p className="text-sm text-industrial-500 mt-2">Industrial Facility</p>
 								</div>
-							</motion.div>
+							</motion.div> */}
+						</div>
+					</div>
+				</div>
+				</div>
+	
+
+			{/* Brands we serve - carousel */}
+			<div className="section-padding-sm bg-white border-t border-industrial-200">
+				<div className="container-editorial">
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={isInView ? { opacity: 1, y: 0 } : {}}
+						transition={{ duration: 0.8 }}
+						className="mb-8"
+					>
+						<span className="mono-label mb-4 block">Brands We Serve</span>
+						<h3 className="text-2xl mb-3">Technology Partners</h3>
+						<p className="text-industrial-600">
+							Certified integration across leading automation platforms.
+						</p>
+					</motion.div>
+
+					<div className="relative overflow-hidden bg-industrial-50 py-8 border-y border-industrial-200">
+						<div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-industrial-50 via-industrial-50 to-transparent z-10 pointer-events-none" />
+						<div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-industrial-50 via-industrial-50 to-transparent z-10 pointer-events-none" />
+
+						<div className="animate-scroll-infinite">
+							{[...partners, ...partners].map((partner, i) => (
+								<div
+									key={`${partner.name}-${i}`}
+									className="flex-shrink-0 w-36 h-20 mx-5 flex items-center justify-center bg-white border-2 border-industrial-200 rounded-lg p-4 hover:border-brand-orange hover:shadow-lg transition-all duration-300"
+									title={partner.name}
+								>
+									<img
+										src={partner.logo}
+										alt={partner.name}
+										className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+									/>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>
@@ -165,7 +215,7 @@ export default function About() {
 						className="mb-16"
 					>
 						<span className="mono-label mb-4 block">Company Evolution</span>
-						<h3 className="text-2xl">Three Decades of Engineering Excellence</h3>
+						<h3 className="text-2xl">Three Decades of Practical Engineering</h3>
 					</motion.div>
 
 					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

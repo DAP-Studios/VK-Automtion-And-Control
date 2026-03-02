@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 export default function Footer() {
 	return (
@@ -7,12 +8,10 @@ export default function Footer() {
 				<div className="grid md:grid-cols-4 gap-12 mb-12">
 					{/* Company */}
 					<div>
-						<div className="text-2xl font-bold text-white mb-4">
-							VK<span className="text-brand-orange">|</span>AUTO
-						</div>
+					<img src={logo} alt="VK Automation and Control" className="h-10 w-auto mb-4 brightness-0 invert" />
 						<p className="text-sm leading-relaxed">
-							Industrial automation and control systems engineering since 2010. 
-							Precision-engineered solutions for manufacturing and process industries.
+							Industrial automation and control systems since 2010.
+							Precision-engineered solutions built for uptime and long service life.
 						</p>
 					</div>
 

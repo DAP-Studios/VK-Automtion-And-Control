@@ -11,13 +11,13 @@ export default function Services() {
 			icon: Wrench,
 			number: '01',
 			title: 'System Integration',
-			tagline: 'Complete automation architecture from concept through commissioning',
-			description: 'Multi-vendor platform integration with unified control strategy. From specification and panel design through field installation, programming, and validation testing. Structured documentation and operator training ensure sustainable operations.',
+			tagline: 'Concept to commissioning, end to end',
+			description: 'Multi-vendor integration with a unified control strategy. We handle specification, panel design, programming, and validation so systems start clean and stay supportable.',
 			capabilities: [
-				{ label: 'PLC Programming', detail: 'Structured code in IEC 61131-3 languages with modular architecture' },
-				{ label: 'SCADA Systems', detail: 'Process visualization with alarming, trending, and recipe management' },
-				{ label: 'Panel Fabrication', detail: 'UL508A compliant control panels with wire labeling and schematics' },
-				{ label: 'Field Services', detail: 'Installation, termination, loop checking, and startup commissioning' }
+				{ label: 'PLC Programming', detail: 'IEC 61131-3 structured code with modular architecture.' },
+				{ label: 'SCADA Systems', detail: 'HMI/SCADA visualization, alarms, trends, and recipes.' },
+				{ label: 'Panel Fabrication', detail: 'UL508A panels with clear labeling and schematics.' },
+				{ label: 'Field Services', detail: 'Installation, termination, loop checks, and startup.' }
 			],
 			deliverables: ['Functional design specification', 'Control panel drawings', 'Software documentation', 'Commissioning reports']
 		},
@@ -25,13 +25,13 @@ export default function Services() {
 			icon: LineChart,
 			number: '02',
 			title: 'Process Optimization',
-			tagline: 'Performance analysis and control tuning for operational efficiency',
-			description: 'Data-driven approach to control loop performance, energy consumption, and production throughput. Process historian analysis identifies optimization opportunities. Control algorithm improvements deliver measurable results in cycle time, waste reduction, and equipment utilization.',
+			tagline: 'Control tuning and performance gains',
+			description: 'Data-led tuning to improve stability, energy use, and throughput. We turn historian data into clear actions and measurable gains.',
 			capabilities: [
-				{ label: 'Loop Tuning', detail: 'PID controller optimization with stability and response time analysis' },
-				{ label: 'Energy Management', detail: 'Power monitoring and optimization strategies for utility cost reduction' },
-				{ label: 'OEE Analysis', detail: 'Overall Equipment Effectiveness tracking with downtime categorization' },
-				{ label: 'Predictive Maintenance', detail: 'Condition monitoring and failure prediction algorithms' }
+				{ label: 'Loop Tuning', detail: 'PID tuning for stability, overshoot, and response.' },
+				{ label: 'Energy Management', detail: 'Power monitoring and cost-reduction strategies.' },
+				{ label: 'OEE Analysis', detail: 'Downtime tagging and OEE visibility.' },
+				{ label: 'Predictive Maintenance', detail: 'Condition monitoring and early-warning models.' }
 			],
 			deliverables: ['Process performance reports', 'Optimization recommendations', 'Control algorithm updates', 'Training documentation']
 		},
@@ -39,23 +39,23 @@ export default function Services() {
 			icon: Phone,
 			number: '03',
 			title: 'Technical Support',
-			tagline: 'Lifecycle support with rapid response and preventive maintenance',
-			description: '24/7 emergency response for critical production systems. Remote diagnostics with VPN connectivity minimize downtime. Preventive maintenance programs include regular site visits, backup verification, and documentation updates. Spare parts inventory management ensures component availability.',
+			tagline: 'Uptime protection and lifecycle support',
+			description: '24/7 response for critical systems. Remote diagnostics reduce downtime; preventive maintenance keeps software, backups, and documentation current.',
 			capabilities: [
-				{ label: 'Emergency Response', detail: '24/7 phone support with 2-hour on-site response for critical failures' },
-				{ label: 'Remote Diagnostics', detail: 'Secure VPN access for troubleshooting and code modifications' },
-				{ label: 'Maintenance Programs', detail: 'Scheduled site visits with system health checks and backups' },
-				{ label: 'Documentation', detail: 'As-built drawings, code documentation, and operator manuals' }
+				{ label: 'Emergency Response', detail: '24/7 support with rapid on-site response for critical failures.' },
+				{ label: 'Remote Diagnostics', detail: 'Secure remote access for troubleshooting and updates.' },
+				{ label: 'Maintenance Programs', detail: 'Scheduled health checks, backups, and audits.' },
+				{ label: 'Documentation', detail: 'As-built drawings, code notes, and operator guides.' }
 			],
 			deliverables: ['Service visit reports', 'System backup archives', 'Modification documentation', 'Training sessions']
 		}
 	];
 
 	const processSteps = [
-		{ phase: 'Discovery', detail: 'Requirements analysis, site survey, existing system review' },
-		{ phase: 'Design', detail: 'Control philosophy, P&ID markup, equipment specifications' },
-		{ phase: 'Implementation', detail: 'Panel build, programming, factory acceptance testing' },
-		{ phase: 'Commissioning', detail: 'Site installation, loop checkout, operator training, validation' }
+		{ phase: 'Discovery', detail: 'Requirements, site survey, existing system review.' },
+		{ phase: 'Design', detail: 'Control philosophy, P&IDs, equipment specs.' },
+		{ phase: 'Implementation', detail: 'Panel build, programming, factory testing.' },
+		{ phase: 'Commissioning', detail: 'Site install, loop checks, training, validation.' }
 	];
 
 	return (
@@ -76,8 +76,8 @@ export default function Services() {
 									<span className="text-brand-orange"> for Industrial Control Systems</span>
 								</h2>
 								<p className="text-xl leading-relaxed text-industrial-600 measure-wide">
-									Full-lifecycle support from initial system design through ongoing maintenance. 
-									Technical expertise backed by rapid response and comprehensive documentation.
+									Full-lifecycle support from design through maintenance. Technical depth,
+									fast response, and clean documentation.
 								</p>
 							</motion.div>
 						</div>
@@ -91,8 +91,8 @@ export default function Services() {
 							>
 								<span className="mono-label block mb-4">Engineering Process</span>
 								<p className="text-sm leading-relaxed text-industrial-700">
-									Structured workflow ensures project success: requirements analysis, detailed design, 
-									phased implementation with testing, and comprehensive handover documentation.
+									Structured workflow: requirements, detailed design, phased implementation,
+									validated testing, and clean handover documentation.
 								</p>
 							</motion.div>
 						</div>

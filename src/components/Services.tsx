@@ -1,6 +1,10 @@
-import { motion, useInView } from 'framer-motion';
+﻿import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Wrench, LineChart, Phone, Zap, TrendingUp, Headset } from 'lucide-react';
+
+import plcServiceImg from '../assets/industries/plc.png';
+import vfdServiceImg from '../assets/industries/vfd.png';
+import autoServiceImg from '../assets/industries/auto.png';
 
 export default function Services() {
 	const ref = useRef(null);
@@ -9,6 +13,7 @@ export default function Services() {
 	const services = [
 		{
 			icon: Wrench,
+			image: plcServiceImg,
 			number: '01',
 			title: 'System Integration',
 			tagline: 'Concept to commissioning, end to end',
@@ -23,6 +28,7 @@ export default function Services() {
 		},
 		{
 			icon: LineChart,
+			image: vfdServiceImg,
 			number: '02',
 			title: 'Process Optimization',
 			tagline: 'Control tuning and performance gains',
@@ -37,6 +43,7 @@ export default function Services() {
 		},
 		{
 			icon: Phone,
+			image: autoServiceImg,
 			number: '03',
 			title: 'Technical Support',
 			tagline: 'Uptime protection and lifecycle support',
@@ -59,9 +66,9 @@ export default function Services() {
 	];
 
 	return (
-		<section id="services" className="relative bg-white">
+		<section id="services" className="relative section-light">
 			{/* Section introduction */}
-			<div className="section-padding-sm border-b border-industrial-200">
+			<div className="section-padding-sm border-b border-stone-200">
 				<div className="container-editorial" ref={ref}>
 					<div className="grid lg:grid-cols-12 gap-12">
 						<div className="lg:col-span-7">
@@ -70,12 +77,12 @@ export default function Services() {
 								animate={isInView ? { opacity: 1, y: 0 } : {}}
 								transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
 							>
-								<span className="mono-label mb-6 block">Service Offerings</span>
-								<h2 className="mb-8">
-									Engineering Services
-									<span className="text-brand-orange"> for Industrial Control Systems</span>
-								</h2>
-								<p className="text-xl leading-relaxed text-industrial-600 measure-wide">
+								<span className="mono-label mb-6 block text-brand-orange/70">Service Offerings</span>
+									<h2 className="mb-8 text-industrial-900">
+										Engineering Services
+										<span className="gradient-text"> for Industrial Control Systems</span>
+									</h2>
+									<p className="text-xl leading-relaxed text-industrial-500 measure-wide">
 									Full-lifecycle support from design through maintenance. Technical depth,
 									fast response, and clean documentation.
 								</p>
@@ -87,10 +94,10 @@ export default function Services() {
 								initial={{ opacity: 0, x: 30 }}
 								animate={isInView ? { opacity: 1, x: 0 } : {}}
 								transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-								className="bg-industrial-50 border-l-4 border-brand-orange p-8"
+									className="glass-card rounded-2xl border-l-4 border-brand-orange p-8"
 							>
-								<span className="mono-label block mb-4">Engineering Process</span>
-								<p className="text-sm leading-relaxed text-industrial-700">
+								<span className="mono-label block mb-4 text-brand-orange/70">Engineering Process</span>
+										<p className="text-sm leading-relaxed text-industrial-500">
 									Structured workflow: requirements, detailed design, phased implementation,
 									validated testing, and clean handover documentation.
 								</p>
@@ -112,7 +119,7 @@ export default function Services() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true, margin: "-120px" }}
 						transition={{ duration: 0.8, delay: 0.2 }}
-						className={`section-padding-sm border-b border-industrial-200 ${isEven ? 'bg-industrial-50' : 'bg-white'}`}
+						className="section-padding-sm border-b border-stone-200"
 					>
 						<div className="container-editorial">
 							<div className="grid lg:grid-cols-12 gap-12 items-start">
@@ -138,16 +145,16 @@ export default function Services() {
 											</p>
 										</div>
 
-										<p className="text-lg leading-relaxed text-industrial-600 mb-10">
+										<p className="text-lg leading-relaxed text-industrial-500 mb-10">
 											{service.description}
 										</p>
 
 										{/* Deliverables */}
-										<div className="bg-white border border-industrial-200 p-6">
-											<span className="mono-label block mb-4">Key Deliverables</span>
-											<div className="grid grid-cols-2 gap-3">
-												{service.deliverables.map((item, i) => (
-													<div key={i} className="flex items-start text-sm text-industrial-700">
+									<div className="glass-card rounded-xl p-6">
+										<span className="mono-label block mb-4 text-brand-orange/70">Key Deliverables</span>
+										<div className="grid grid-cols-2 gap-3">
+											{service.deliverables.map((item, i) => (
+													<div key={i} className="flex items-start text-sm text-industrial-500">
 														<span className="w-1 h-1 bg-brand-orange mt-2 mr-3 flex-shrink-0"></span>
 														<span>{item}</span>
 													</div>
@@ -157,46 +164,43 @@ export default function Services() {
 									</div>
 								</div>
 
-								{/* Capabilities &  Image column */}
-								<div className={`lg:col-span-5 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-									{/* Image with abstract technical visualization */}
-									<motion.div
-										initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-										whileInView={{ opacity: 1, x: 0 }}
-										viewport={{ once: true, margin: "-150px" }}
-										transition={{ duration: 1, delay: 0.2 }}
-										className="relative aspect-[4/5] bg-gradient-to-br from-industrial-50 to-industrial-100 border border-industrial-200 rounded-lg overflow-hidden mb-8 flex items-center justify-center"
-									>
-										{/* Animated technical background */}
-										<div className="absolute inset-0 opacity-30">
-											<svg viewBox="0 0 400 500" className="w-full h-full">
-												<defs>
-													<pattern id={`grid-${index}`} width="40" height="40" patternUnits="userSpaceOnUse">
-														<path d={`M 40 0 L 0 0 0 40`} fill="none" stroke="#E67E22" strokeWidth="0.5"/>
-													</pattern>
-												</defs>
-												<rect width="400" height="500" fill={`url(#grid-${index})`} />
-											</svg>
-										</div>
-
-										{/* Icon representation */}
-										<div className="relative z-10 text-center">
-											<div className="inline-block p-8 bg-white/80 backdrop-blur-sm rounded-full mb-6">
-												<Icon className="w-16 h-16 text-brand-orange" strokeWidth={1.2} />
+{/* Capabilities & Image column */}
+							<div className={`lg:col-span-5 ${!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+								{/* Real service image */}
+								<motion.div
+									initial={{ opacity: 0, x: isEven ? 40 : -40 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									viewport={{ once: true, margin: "-150px" }}
+									transition={{ duration: 1, delay: 0.2 }}
+										className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-8 border border-stone-200"
+								>
+									<img
+										src={service.image}
+										alt={service.title}
+										className="absolute inset-0 w-full h-full object-cover"
+									/>
+									{/* Dark gradient overlay */}
+									<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+									{/* Orange tint accent */}
+									<div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(230,126,34,0.18) 0%, transparent 60%)' }} />
+									{/* Bottom label */}
+									<div className="absolute bottom-0 left-0 right-0 p-6">
+										<div className="flex items-center gap-3">
+											<div className="p-2 rounded-lg" style={{ background: 'rgba(230,126,34,0.2)', border: '1px solid rgba(230,126,34,0.3)' }}>
+												<Icon className="w-5 h-5 text-brand-orange" strokeWidth={1.5} />
 											</div>
-											<p className="font-mono text-sm text-industrial-600 font-semibold">
-												{service.title}
-											</p>
+											<span className="font-mono text-sm font-semibold text-white/80">{service.title}</span>
+										</div>
 										</div>
 									</motion.div>
 
 									{/* Capabilities list */}
 									<div className="space-y-6">
-										<span className="mono-label block">Technical Capabilities</span>
+										<span className="mono-label block text-brand-orange/70">Technical Capabilities</span>
 										{service.capabilities.map((cap, i) => (
-											<div key={i} className="border-l-2 border-industrial-200 pl-6 pb-4">
-												<h4 className="font-bold text-industrial-900 mb-2 text-sm">{cap.label}</h4>
-												<p className="text-sm text-industrial-600 leading-relaxed">
+											<div key={i} className="border-l-2 border-brand-orange/30 pl-6 pb-4">
+											<h4 className="font-bold text-industrial-900 mb-2 text-sm">{cap.label}</h4>
+											<p className="text-sm text-industrial-500 leading-relaxed">
 													{cap.detail}
 												</p>
 											</div>
@@ -210,7 +214,7 @@ export default function Services() {
 			})}
 
 			{/* Process timeline */}
-			<div className="section-padding bg-industrial-900 text-white">
+			<div className="section-padding text-industrial-900" style={{ background: 'linear-gradient(135deg, #fff5eb 0%, #f8f6f2 50%, #fff5eb 100%)' }}>
 				<div className="container-editorial">
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -218,7 +222,7 @@ export default function Services() {
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8 }}
 					>
-						<span className="mono-label mb-8 block text-white/60">Implementation Methodology</span>
+							<span className="mono-label mb-8 block text-industrial-500">Implementation Methodology</span>
 						<h3 className="text-3xl font-bold mb-16 max-w-2xl">
 							Systematic Engineering Workflow
 						</h3>
@@ -236,7 +240,7 @@ export default function Services() {
 										0{i + 1}
 									</div>
 									<h4 className="text-xl font-bold mb-3">{step.phase}</h4>
-									<p className="text-sm text-white/70 leading-relaxed">
+									<p className="text-sm text-industrial-600 leading-relaxed">
 										{step.detail}
 									</p>
 								</motion.div>

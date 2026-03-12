@@ -1,82 +1,98 @@
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import { navItems, siteConfig } from '../lib/siteConfig';
+
+const services = ['PLC Programming', 'SCADA and HMI Development', 'VFD Commissioning', 'Industrial Networking', 'Lifecycle Support'];
 
 export default function Footer() {
 	return (
-		<footer className="bg-industrial-900 text-industrial-300">
-			<div className="container-wide py-16">
-				<div className="grid md:grid-cols-4 gap-12 mb-12">
-					{/* Company */}
+		<footer className="bg-stone-100 border-t border-stone-200 text-industrial-900">
+			<div className="container-wide pb-10 pt-20">
+				<div className="mb-12 rounded-[2rem] border border-stone-200 bg-white p-8 md:p-10">
+					<div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
+						<div>
+						<span className="section-kicker text-industrial-500">Start the Conversation</span>
+						<h2 className="mt-4 max-w-3xl font-display text-3xl text-industrial-900 md:text-5xl">
+								Need a control system partner that can design, commission, and support the full lifecycle?
+							</h2>
+						</div>
+						<div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+							<a
+								href={siteConfig.phoneHref}
+								className="inline-flex items-center justify-center rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-industrial-700 transition hover:border-brand-orange hover:text-brand-orange"
+							>
+								{siteConfig.phoneDisplay}
+							</a>
+							<Link
+								to="/contact"
+								className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-dark"
+							>
+								Request Consultation
+								<ArrowUpRight className="h-4 w-4" />
+							</Link>
+						</div>
+					</div>
+				</div>
+
+				<div className="grid gap-10 border-b border-stone-200 pb-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
 					<div>
-					<img src={logo} alt="VK Automation and Control" className="h-10 w-auto mb-4 brightness-0 invert" />
-						<p className="text-sm leading-relaxed">
-							Industrial automation and control systems since 2010.
-							Precision-engineered solutions built for uptime and long service life.
+						<img src={logo} alt={siteConfig.name} className="h-11 w-auto" />
+						<p className="mt-5 max-w-md text-base leading-relaxed text-industrial-600">
+							{siteConfig.shortName} delivers industrial automation engineering, PLC programming, SCADA integration, and support for manufacturing and process facilities across Gujarat and beyond.
 						</p>
 					</div>
 
-					{/* Quick Links */}
 					<div>
-						<h4 className="text-white font-bold mb-4">Quick Links</h4>
-						<nav className="space-y-2 text-sm">
-							<a href="#about" className="block hover:text-brand-orange transition-colors">About Us</a>
-							<a href="#products" className="block hover:text-brand-orange transition-colors">Products</a>
-							<a href="#industries" className="block hover:text-brand-orange transition-colors">Industries</a>
-							<a href="#services" className="block hover:text-brand-orange transition-colors">Services</a>
-							<a href="#contact" className="block hover:text-brand-orange transition-colors">Contact</a>
+						<h3 className="mb-4 text-base font-semibold text-industrial-900">Navigation</h3>
+						<nav className="space-y-3 text-sm text-industrial-600">
+							{navItems.map((item) => (
+								<Link key={item.href} to={item.href} className="block transition hover:text-brand-orange">
+									{item.label}
+								</Link>
+							))}
 						</nav>
 					</div>
 
-					{/* Services */}
 					<div>
-						<h4 className="text-white font-bold mb-4">Services</h4>
-						<ul className="space-y-2 text-sm">
-							<li>System Design</li>
-							<li>PLC Programming</li>
-							<li>HMI/SCADA</li>
-							<li>Installation</li>
-							<li>Technical Support</li>
+						<h3 className="mb-4 text-base font-semibold text-industrial-900">Expertise</h3>
+						<ul className="space-y-3 text-sm text-industrial-600">
+							{services.map((item) => (
+								<li key={item}>{item}</li>
+							))}
 						</ul>
 					</div>
 
-					{/* Contact */}
 					<div>
-						<h4 className="text-white font-bold mb-4">Contact</h4>
-						<div className="space-y-3 text-sm">
-							<div className="flex items-start space-x-3">
-								<Mail className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
-								<a href="mailto:info.vkautomationadncontrol@gmail.com" className="hover:text-brand-orange transition-colors">
-									info.vkautomationadncontrol@gmail.com
+						<h3 className="mb-4 text-base font-semibold text-industrial-900">Contact</h3>
+						<div className="space-y-4 text-sm text-industrial-600">
+							<div className="flex items-start gap-3">
+								<Mail className="mt-0.5 h-4 w-4 text-brand-orange" />
+								<a href={siteConfig.emailHref} className="transition hover:text-brand-orange">
+									{siteConfig.email}
 								</a>
 							</div>
-							<div className="flex items-start space-x-3">
-								<Phone className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
-								<a href="tel:+917949338324" className="hover:text-brand-orange transition-colors">
-									+91 7949338324 
+							<div className="flex items-start gap-3">
+								<Phone className="mt-0.5 h-4 w-4 text-brand-orange" />
+								<a href={siteConfig.phoneHref} className="transition hover:text-brand-orange">
+									{siteConfig.phoneDisplay}
 								</a>
 							</div>
-							<div className="flex items-start space-x-3">
-								<MapPin className="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" />
+							<div className="flex items-start gap-3">
+								<MapPin className="mt-0.5 h-4 w-4 text-brand-orange" />
 								<address className="not-italic">
-								Ground Floor, Shop No 2, Bajrang Complex<br />
-								Vapi Prime Hotel, Char Rasta<br />
-								Vapi, Valsad-396195, Gujarat, India
+									{siteConfig.addressLines.map((line) => (
+										<div key={line}>{line}</div>
+									))}
 								</address>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				{/* Bottom bar */}
-				<div className="border-t border-industrial-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-					<div>
-						© {new Date().getFullYear()} VK Automation. All rights reserved.
-					</div>
-					<div className="flex space-x-6">
-						<a href="/privacy" className="hover:text-brand-orange transition-colors">Privacy Policy</a>
-						<a href="/terms" className="hover:text-brand-orange transition-colors">Terms of Service</a>
-						<a href="/iso" className="hover:text-brand-orange transition-colors">ISO 9001:2015 Certified</a>
-					</div>
+				<div className="flex flex-col gap-3 pt-8 text-sm text-industrial-500 md:flex-row md:items-center md:justify-between">
+					<div>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</div>
+					<div>Industrial automation company in {siteConfig.city}, {siteConfig.region}.</div>
 				</div>
 			</div>
 		</footer>

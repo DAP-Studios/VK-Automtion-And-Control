@@ -2,6 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// Import product images
+import plcProductImg from '../assets/products/plc.png';
+import hmiProductImg from '../assets/products/hmi.png';
+import vfdProductImg from '../assets/products/vfd.png';
+
+// Import industry images for remaining product cards
+import safetyImg from '../assets/industries/safty.png';
+import networkImg from '../assets/industries/network.png';
+import autoImg from '../assets/industries/auto.png';
+
 // Import partner logos
 import siemensLogo from '../assets/partners/siemens.png';
 import allenBradleyLogo from '../assets/partners/allenbradley.png';
@@ -42,7 +52,7 @@ export default function ProductsGrid() {
 		return () => window.removeEventListener('resize', onResize);
 	}, []);
 
-	// Toggle flip on click — used for mobile taps; on desktop this acts as a "lock" override
+	// Toggle flip on click � used for mobile taps; on desktop this acts as a "lock" override
 	const handleClick = (id: number) => {
 		if (isMobile.current) {
 			setFlipped(prev => ({ ...prev, [id]: !prev[id] }));
@@ -53,7 +63,7 @@ export default function ProductsGrid() {
 		const validCards = cardsRef.current.filter(Boolean);
 		if (validCards.length === 0) return;
 
-		// Only animate translateY — never touch opacity so cards are always visible
+		// Only animate translateY � never touch opacity so cards are always visible
 		gsap.set(validCards, { y: 40 });
 
 		const tween = gsap.to(validCards, {
@@ -80,7 +90,8 @@ export default function ProductsGrid() {
 			category: 'Programmable Logic Controllers',
 			tagline: 'Mission-critical control',
 			description: 'Industrial PLCs built for continuous operation in harsh environments.',
-			icon: '🎛️',
+			icon: '???',
+			image: plcProductImg,
 			color: 'from-blue-600 to-indigo-700',
 			bgColor: 'bg-blue-50',
 			specs: [
@@ -96,7 +107,8 @@ export default function ProductsGrid() {
 			category: 'Human-Machine Interface',
 			tagline: 'Operator panels, built for clarity',
 			description: 'High-resolution touch HMIs with bright displays and reliable multi-touch.',
-			icon: '📱',
+			icon: '??',
+			image: hmiProductImg,
 			color: 'from-orange-500 to-orange-700',
 			bgColor: 'bg-orange-50',
 			specs: [
@@ -112,11 +124,12 @@ export default function ProductsGrid() {
 			category: 'Variable Frequency Drives',
 			tagline: 'High-efficiency motor control',
 			description: 'Precision motor control from 0.75kW to 630kW with sensorless vector control.',
-			icon: '⚡',
+			icon: '?',
+			image: vfdProductImg,
 			color: 'from-green-600 to-emerald-700',
 			bgColor: 'bg-green-50',
 			specs: [
-				{ label: 'Power Range', value: '0.75kW–630kW' },
+				{ label: 'Power Range', value: '0.75kW�630kW' },
 				{ label: 'Control Mode', value: 'V/F, vector' },
 				{ label: 'Efficiency', value: '>98% rated' },
 			],
@@ -128,7 +141,8 @@ export default function ProductsGrid() {
 			category: 'Functional Safety Systems',
 			tagline: 'SIL 3 / PLe certified',
 			description: 'Safety-rated control with redundant processing and self-diagnostics.',
-			icon: '🛡️',
+			icon: '???',
+			image: safetyImg,
 			color: 'from-red-600 to-rose-700',
 			bgColor: 'bg-red-50',
 			specs: [
@@ -144,7 +158,8 @@ export default function ProductsGrid() {
 			category: 'Industrial Networking',
 			tagline: 'Multi-protocol gateway',
 			description: 'Gateway for Ethernet/IP, Profinet, Modbus TCP, and MQTT.',
-			icon: '🌐',
+			icon: '??',
+			image: networkImg,
 			color: 'from-purple-600 to-violet-700',
 			bgColor: 'bg-purple-50',
 			specs: [
@@ -160,12 +175,13 @@ export default function ProductsGrid() {
 			category: 'Industrial Power',
 			tagline: 'Redundant power systems',
 			description: 'Stable power delivery with redundancy support and wide input range.',
-			icon: '🔋',
+			icon: '??',
+			image: autoImg,
 			color: 'from-yellow-600 to-amber-700',
 			bgColor: 'bg-yellow-50',
 			specs: [
 				{ label: 'Output Power', value: '1200W @ 24VDC' },
-				{ label: 'Input Range', value: '85–264VAC' },
+				{ label: 'Input Range', value: '85�264VAC' },
 				{ label: 'Protection', value: 'Overload, short circuit' },
 			],
 			applications: ['Redundant systems', 'Critical control', 'UPS backup'],
@@ -174,7 +190,7 @@ export default function ProductsGrid() {
 
 	return (
 		<>
-			{/* Inline styles for flip perspective — required since Tailwind has no built-in perspective utility */}
+			{/* Inline styles for flip perspective � required since Tailwind has no built-in perspective utility */}
 			<style>{`
 				.flip-scene {
 					perspective: 1200px;
@@ -222,18 +238,18 @@ export default function ProductsGrid() {
 				}
 			`}</style>
 
-			<section className="bg-gradient-to-b from-industrial-50 to-white py-20">
+						<section className="section-light py-20">
 				<div className="container-wide">
 					{/* Header */}
 					<div className="mb-16 text-center">
-						<span className="mono-label text-brand-orange mb-4 block text-sm font-semibold">
+					<span className="mono-label text-brand-orange/80 mb-4 block text-sm font-semibold">
 							Product Portfolio
 						</span>
 						<h1 className="text-4xl md:text-5xl font-bold mb-6 text-industrial-900">
 							Complete Product{' '}
-							<span className="text-brand-orange">Lineup</span>
+							<span className="gradient-text">Lineup</span>
 						</h1>
-						<p className="text-lg text-industrial-600 max-w-3xl mx-auto leading-relaxed">
+						<p className="text-lg text-industrial-500 max-w-3xl mx-auto leading-relaxed">
 							Field-proven automation hardware built for uptime, longevity, and harsh
 							environments.
 						</p>
@@ -256,58 +272,63 @@ export default function ProductsGrid() {
 								}}
 							>
 								<div className="flip-card-inner">
-									{/* ─── FRONT ─── */}
+									{/* --- FRONT --- */}
 									<div
-										className={`flip-face ${product.bgColor} border-2 border-industrial-300 hover:border-brand-orange shadow-xl`}
+											className="flip-face group border border-stone-200 shadow-lg overflow-hidden" style={{ background: '#ffffff' }}
 									>
-										{/* Gradient image area */}
-										<div
-											className={`relative w-full h-3/4 bg-gradient-to-br ${product.color} flex items-center justify-center`}
-										>
-											<span className="text-8xl opacity-40 select-none drop-shadow-lg">
-												{product.icon}
-											</span>
-											{/* subtle bottom fade */}
-											<div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+{/* Product image or gradient fallback */}
+									<div className="relative w-full h-3/4 overflow-hidden">
+										{product.image ? (
+											<img
+												src={product.image}
+												alt={product.model}
+												className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+											/>
+										) : (
+											<div className={`h-full w-full bg-gradient-to-br ${product.color} flex items-center justify-center`}>
+												<span className="text-8xl opacity-40 select-none drop-shadow-lg">{product.icon}</span>
+											</div>
+										)}
+										<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 										</div>
 
 										{/* Name strip */}
-										<div className="absolute bottom-0 left-0 right-0 flex flex-col justify-center items-center h-1/4 p-4 bg-white border-t-4 border-brand-orange/30">
+										<div className="absolute bottom-0 left-0 right-0 flex flex-col justify-center items-center h-1/4 p-4 border-t border-brand-orange/30 backdrop-blur-sm backdrop-blur-sm">
 											<p className="text-xs mono-label text-brand-orange font-semibold mb-1 uppercase tracking-wide">
 												{product.category}
 											</p>
-											<h3 className="text-lg font-bold text-industrial-900 text-center">
+												<h3 className="text-lg font-bold text-industrial-900 text-center">
 												{product.model}
 											</h3>
 										</div>
 
 										{/* Flip hint */}
-										<div className="absolute bottom-2 right-3 text-xs text-industrial-400 opacity-60 pointer-events-none">
+												<div className="absolute bottom-2 right-3 text-xs text-stone-400 opacity-60 pointer-events-none">
 											<span className="hidden md:inline">Hover to flip</span>
 											<span className="md:hidden">Tap to flip</span>
 										</div>
 									</div>
 
-									{/* ─── BACK ─── */}
-									<div className="flip-face flip-face-back bg-industrial-900 border-2 border-brand-orange shadow-lg p-6 flex flex-col">
+									{/* --- BACK --- */}
+											<div className="flip-face flip-face-back bg-white border border-brand-orange/40 shadow-lg p-6 flex flex-col">
 										{/* Tagline */}
 										<p className="text-sm text-brand-orange font-semibold mb-3 leading-snug">
 											{product.tagline}
 										</p>
 
 										{/* Description */}
-										<p className="text-xs text-industrial-300 mb-4 leading-relaxed">
+												<p className="text-xs text-industrial-500 mb-4 leading-relaxed">
 											{product.description}
 										</p>
 
 										{/* Specs */}
-										<div className="mb-4 pb-4 border-b border-industrial-700">
-											<p className="text-xs font-bold text-industrial-400 uppercase mb-2 tracking-wider">
+													<div className="mb-4 pb-4 border-b border-stone-200">
+												<p className="text-xs font-bold text-industrial-400 uppercase mb-2 tracking-wider">
 												Specs
 											</p>
 											{product.specs.map((spec, i) => (
 												<div key={i} className="flex justify-between text-xs py-1">
-													<span className="text-industrial-400">{spec.label}</span>
+																<span className="text-industrial-500">{spec.label}</span>
 													<span className="font-mono text-brand-orange font-medium">
 														{spec.value}
 													</span>
@@ -317,7 +338,7 @@ export default function ProductsGrid() {
 
 										{/* Applications */}
 										<div className="flex-1">
-											<p className="text-xs font-bold text-industrial-400 uppercase mb-2 tracking-wider">
+												<p className="text-xs font-bold text-industrial-400 uppercase mb-2 tracking-wider">
 												Applications
 											</p>
 											<div className="flex flex-wrap gap-1">
@@ -333,7 +354,7 @@ export default function ProductsGrid() {
 										</div>
 
 										{/* Flip-back hint (mobile only) */}
-										<div className="text-xs text-industrial-500 pt-3 text-center opacity-60 md:hidden pointer-events-none">
+													<div className="text-xs text-stone-400 pt-3 text-center opacity-60 md:hidden pointer-events-none">
 											Tap to flip back
 										</div>
 									</div>
@@ -348,27 +369,26 @@ export default function ProductsGrid() {
 							<h3 className="text-2xl font-bold text-industrial-900 mb-2">
 								Technology Partners
 							</h3>
-							<p className="text-industrial-600">
+							<p className="text-industrial-500">
 								Certified integration across leading automation platforms.
 							</p>
 						</div>
-						<div className="relative overflow-hidden bg-white py-8 border-y-2 border-industrial-200">
+						<div className="relative overflow-hidden py-8 border-y border-stone-200">
 							{/* Gradient overlays */}
-							<div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none" />
-							<div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none" />
-
-							{/* Scrolling logos — duplicated for seamless loop */}
+							<div className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #f8f6f2, transparent)' }} />
+							<div className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #f8f6f2, transparent)' }} />
+							{/* Scrolling logos � duplicated for seamless loop */}
 							<div className="animate-scroll-infinite">
 								{[...partners, ...partners].map((partner, i) => (
 									<div
 										key={`${partner.name}-${i}`}
-										className="flex-shrink-0 w-40 h-24 mx-6 flex items-center justify-center bg-white border-2 border-industrial-200 rounded-lg p-4 hover:border-brand-orange hover:shadow-lg transition-all duration-300"
+										className="flex-shrink-0 w-40 h-24 mx-6 flex items-center justify-center rounded-lg p-4 border border-stone-200 bg-white hover:border-brand-orange/50 transition-all duration-300"
 										title={partner.name}
 									>
 										<img
 											src={partner.logo}
 											alt={partner.name}
-											className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+											className="max-w-full max-h-full object-contain opacity-75 hover:opacity-100 transition-all duration-300"
 										/>
 									</div>
 								))}
@@ -377,14 +397,14 @@ export default function ProductsGrid() {
 					</div>
 
 					{/* CTA Section */}
-					<div className="mt-20 bg-gradient-to-r from-industrial-900 to-industrial-800 rounded-lg p-12 text-center text-white">
-						<h3 className="text-3xl font-bold mb-4 text-white">Need Technical Specs?</h3>
-						<p className="text-lg text-industrial-300 mb-8 max-w-2xl mx-auto">
+						<div className="mt-20 rounded-2xl p-12 text-center border border-brand-orange/20" style={{ background: 'linear-gradient(135deg, rgba(230,126,34,0.08) 0%, rgba(248,246,242,0.95) 50%, rgba(230,126,34,0.05) 100%)' }}>
+							<h3 className="text-3xl font-bold mb-4 text-industrial-900">Need Technical Specs?</h3>
+							<p className="text-lg text-industrial-500 mb-8 max-w-2xl mx-auto">
 							Request datasheets, CAD models, and integration notes for any product.
 						</p>
 						<a
 							href="/contact"
-							className="inline-block border-2 border-brand-orange bg-brand-orange hover:bg-opacity-90 text-white px-10 py-4 text-sm font-medium uppercase tracking-wider transition-all duration-300 rounded"
+							className="inline-block bg-brand-orange hover:bg-orange-dark text-white px-10 py-4 text-sm font-semibold uppercase tracking-wider transition-all duration-300 rounded-full shadow-lg"
 						>
 							Request Specs
 						</a>

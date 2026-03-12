@@ -5,18 +5,16 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /_next/
-Disallow: /private/
-Disallow: /*.json$
-
-# Crawl-delay for all bots
-Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://www.vkautomationandcontrol.in/sitemap.xml
 
-# Popular search engine bots
+# Google
 User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
 Allow: /
 
 User-agent: Bingbot

@@ -11,6 +11,20 @@ import plcIndImg from './industries/plc.png';
 import safetyImg from './industries/safty.png';
 import vfdIndImg from './industries/vfd.png';
 
+// Client logos — locally stored in src/assets/clients/
+import artiClient from './clients/arti.png';
+import bkmClient from './clients/bkm.png';
+import dorfketalClient from './clients/dorfketal.png';
+import galvaClient from './clients/galva.png';
+import indocountClient from './clients/indocount.png';
+import kusumgarClient from './clients/kusumgar.png';
+import nitinClient from './clients/nitin.png';
+import paramClient from './clients/param.png';
+import sandhyaClient from './clients/sandhyagroup.png';
+import steamClient from './clients/steam.png';
+import umdicaClient from './clients/umdica.png';
+import viralClient from './clients/virallab.png';
+
 export const productImages = {
   plc: plcImg,
   hmi: hmiImg,
@@ -25,3 +39,18 @@ export const industryImages = {
   safety: safetyImg,
   modernization: legacyImg,
 };
+
+export const clientLogos = [
+  { name: 'Arti', logo: artiClient },
+  { name: 'BKM', logo: bkmClient },
+  { name: 'Dorf Ketal', logo: dorfketalClient },
+  { name: 'Galva', logo: galvaClient },
+  { name: 'Indocount', logo: indocountClient },
+  { name: 'Kusumgar', logo: kusumgarClient },
+  { name: 'Nitin', logo: nitinClient },
+  { name: 'Param', logo: paramClient },
+  { name: 'Sandhya Group', logo: sandhyaClient },
+  { name: 'Steam', logo: steamClient },
+  { name: 'Umdica', logo: umdicaClient },
+  { name: 'Viral Lab', logo: viralClient },
+];

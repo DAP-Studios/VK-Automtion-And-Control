@@ -76,7 +76,7 @@ export default function Contact() {
           >
             <span className="section-kicker" style={{ color: 'rgba(230,126,34,0.8)' }}>Contact VK Automation</span>
             <h2 className="mt-5 text-4xl font-semibold text-industrial-900 md:text-5xl">
-              Start your <span className="gradient-text">PLC, SCADA, and automation</span> consultation.
+              Start your <span className="gradient-text">Automation</span> consultation.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-industrial-500">
               Tell us about your line, process, or upgrade requirements. We will review your inputs and suggest a practical implementation path.

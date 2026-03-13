@@ -21,10 +21,10 @@ export default function About() {
 	const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
 	const timeline = [
-		{ year: '2010', milestone: 'Founded with focus on PLC programming and industrial control' },
-		{ year: '2015', milestone: 'ISO 9001:2015 certification achieved' },
-		{ year: '2018', milestone: 'Expanded to complete system integration services' },
-		{ year: '2024', milestone: '500+ automation systems deployed across industries' }
+		{ year: '2019', milestone: 'VK Automation started with a focus on PLC programming, panels, and industrial control work.' },
+		{ year: '2020', milestone: 'Delivered early retrofit and commissioning projects for local manufacturing units.' },
+		{ year: '2022', milestone: 'Expanded into end-to-end SCADA, drive, and control panel integration services.' },
+		{ year: '2026', milestone: 'Crossed 200+ system deliveries through practical, founder-led execution.' }
 	];
 
 	const partners = [
@@ -41,9 +41,9 @@ export default function About() {
 	];
 
 	const aboutHighlights = [
-		{ value: '500+', label: 'Automation Systems Delivered' },
-		{ value: '24/7', label: 'Support and Diagnostics' },
-		{ value: 'IEC', label: 'Documentation and Standards' }
+		{ value: '2019', label: 'Company Started' },
+		{ value: '200+', label: 'Systems Delivered' },
+		{ value: 'Multi-Brand', label: 'Project Experience' }
 	];
 
 	return (
@@ -87,7 +87,7 @@ export default function About() {
 								<div className="space-y-4">
 									<span className="text-xs uppercase tracking-[0.28em] text-brand-orange/70">Why VK</span>
 											<p className="text-xl md:text-2xl leading-snug text-industrial-900">
-										Built for plants that need uptime, traceability, and reliable commissioning.
+										Built for plants that need practical automation support without heavy enterprise overhead.
 									</p>
 								</div>
 										<div className="space-y-4 border-t border-stone-200 pt-5">
@@ -117,14 +117,14 @@ export default function About() {
 								</h2>
 							</div>
 									<p className="text-lg md:text-xl leading-relaxed text-industrial-600">
-								VK Automation is an industrial automation company delivering PLC programming,
+								VK Automation is an industrial automation company, started in 2019, delivering PLC programming,
 								SCADA development, VFD commissioning, and control system integration for
 								manufacturing and process plants.
 							</p>
 							<p className="text-industrial-500">
-								We start with requirements and site constraints, then design PLC architectures,
+								The team focuses on site realities first, then designs PLC architectures,
 								HMI and SCADA interfaces, industrial networking, and VFD strategies that keep
-								operations visible, stable, and easy to diagnose.
+								operations visible, stable, and easier to troubleshoot after handover.
 							</p>
 						</motion.div>
 						</div>
@@ -205,9 +205,9 @@ export default function About() {
 						className="mb-6"
 					>
 					<span className="mono-label mb-4 block text-brand-orange/70">Brands We Serve</span>
-					<h3 className="text-2xl text-industrial-900 mb-3">Technology Partners</h3>
+					<h3 className="text-2xl text-industrial-900 mb-3">Platforms We Work With</h3>
 					<p className="text-industrial-500">
-							Certified integration across leading automation platforms.
+								Hands-on integration experience across widely used automation platforms.
 						</p>
 					</motion.div>
 
@@ -244,7 +244,7 @@ export default function About() {
 						className="mb-10"
 					>
 						<span className="mono-label mb-4 block text-brand-orange/70">Company Evolution</span>
-						<h3 className="text-2xl text-industrial-900">Three Decades of Practical Engineering</h3>
+						<h3 className="text-2xl text-industrial-900">Built Step by Step Since 2019</h3>
 					</motion.div>
 
 					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -275,8 +275,8 @@ export default function About() {
 					<div className="grid lg:grid-cols-3 gap-8">
 						{[
 							{
-								title: 'Engineering Standards',
-								items: ['IEC 61131-3 PLC programming', 'ISO 13849 safety compliance', 'IEEE industrial networking', 'Complete technical documentation']
+								title: 'Practical Engineering',
+								items: ['IEC 61131-3 PLC programming', 'Industrial networking and drive integration', 'Clear schematics, IO lists, and documentation', 'Commissioning focused on maintainability']
 							},
 							{
 								title: 'Project Methodology',
@@ -284,7 +284,7 @@ export default function About() {
 							},
 							{
 								title: 'Long-Term Support',
-								items: ['24/7 technical hotline', 'Remote diagnostic access', 'Preventive maintenance programs', 'System upgrade engineering']
+								items: ['Remote diagnostic support', 'On-site troubleshooting when required', 'Preventive maintenance planning', 'System upgrade engineering']
 							}
 						].map((column, i) => (
 							<motion.div

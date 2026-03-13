@@ -84,6 +84,12 @@
 		font-weight: 600;
 		color: #1C1917;
 	}
+
+	@media (hover: hover) and (pointer: fine) {
+		html, body, * {
+			cursor: none !important;
+		}
+	}
 }
 
 @layer components {

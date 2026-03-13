@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
+import CountUp from 'react-countup';
 import { ArrowRight } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import TsParticles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 import bgImage from '../assets/bg.png';
+import TypewriterServices from './TypewriterServices';
 
 const METRICS = [
-  { value: '99.7%', label: 'System Uptime' },
-  { value: '24/7', label: 'Support' },
-  { value: '500+', label: 'Systems Deployed' },
-];
+  { value: '2019', label: 'Operating Since', type: 'static' },
+  { value: 200, suffix: '+', label: 'Systems Delivered', type: 'countup' },
+  { value: '24/7', label: 'Response Time', type: 'static' },
+] as const;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -19,12 +23,12 @@ const fadeInUp = {
 function Particles({ viewportHeight }: { viewportHeight: number }) {
   const particles = useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => ({
+      Array.from({ length: 48 }, (_, i) => ({
         id: i,
         delay: Math.random() * 2,
-        duration: 4 + Math.random() * 2,
+        duration: 3.2 + Math.random() * 2,
         left: Math.random() * 100,
-        opacity: Math.random() * 0.6 + 0.2,
+        opacity: Math.random() * 0.75 + 0.2,
       })),
     []
   );
@@ -49,6 +53,49 @@ function Particles({ viewportHeight }: { viewportHeight: number }) {
             delay: p.delay,
             repeat: Infinity,
             ease: 'linear',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function SparkBurst() {
+  const sparks = useMemo(
+    () =>
+      Array.from({ length: 28 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 1.5,
+        duration: 1.2 + Math.random() * 1.6,
+      })),
+    []
+  );
+
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {sparks.map((spark) => (
+        <motion.div
+          key={spark.id}
+          className="absolute rounded-full bg-orange-300"
+          style={{
+            left: `${spark.left}%`,
+            top: `${spark.top}%`,
+            width: '3px',
+            height: '3px',
+            boxShadow: '0 0 10px rgba(251,146,60,0.9)',
+          }}
+          animate={{
+            opacity: [0, 0.95, 0],
+            scale: [0.4, 1.5, 0.6],
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: spark.duration,
+            delay: spark.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
           }}
         />
       ))}
@@ -121,6 +168,61 @@ function GlowingRibbon({ viewportHeight }: { viewportHeight: number }) {
   );
 }
 
+function MetricCard({ metric, index }: { metric: (typeof METRICS)[number]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.5 + index * 0.1, ease: EASE }}
+    >
+      <div className="mb-2 text-3xl font-bold text-white md:text-4xl">
+        {metric.type === 'countup' ? <CountUp end={metric.value} duration={2} suffix={metric.suffix} /> : metric.value}
+      </div>
+      <div className="text-sm uppercase tracking-wide text-gray-300">{metric.label}</div>
+    </motion.div>
+  );
+}
+
+function ButtonSparks() {
+  const particlesInit = useCallback(async (engine: unknown) => {
+    await loadFull(engine as never);
+  }, []);
+
+  return (
+    <TsParticles
+      id="hero-button-sparks"
+      init={particlesInit}
+      className="pointer-events-none absolute inset-0"
+      options={{
+        fullScreen: { enable: false },
+        background: { color: 'transparent' },
+        fpsLimit: 60,
+        particles: {
+          number: { value: 0 },
+          color: { value: ['#ffb347', '#ff7a18', '#ffd28a'] },
+          move: {
+            direction: 'none',
+            enable: true,
+            outModes: { default: 'destroy' },
+            speed: { min: 1, max: 2.5 },
+          },
+          opacity: { value: { min: 0.3, max: 1 }, animation: { enable: true, speed: 1, startValue: 'max', destroy: 'min' } },
+          size: { value: { min: 1, max: 3 } },
+          shape: { type: 'circle' },
+        },
+        emitters: {
+          direction: 'none',
+          life: { count: 0, delay: 2.2, duration: 0.18 },
+          position: { x: 50, y: 50 },
+          rate: { delay: 0.08, quantity: 3 },
+          size: { width: 4, height: 4 },
+        },
+        detectRetina: true,
+      }}
+    />
+  );
+}
+
 export default function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [viewportHeight, setViewportHeight] = useState(900);
@@ -139,46 +241,70 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       className="relative min-h-screen overflow-hidden"
+      initial={{ backgroundPosition: '50% 50%' }}
+      animate={{ backgroundPosition: ['50% 50%', '52% 48%', '50% 50%'] }}
+      transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: '50% 50%',
         backgroundAttachment: 'fixed',
+        willChange: 'background-position',
       }}
     >
-      <div className="pointer-events-none absolute inset-0 bg-black/40" />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.25) 70%, transparent 100%)' }}
+      />
       <Particles viewportHeight={viewportHeight} />
+      <SparkBurst />
       <GlowingRibbon viewportHeight={viewportHeight} />
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div
+        <motion.div
           className="absolute -left-48 top-1/4 h-96 w-96 rounded-full blur-3xl"
-          style={{ background: 'rgba(230, 126, 34, 0.12)', animation: 'float 6s ease-in-out infinite' }}
+          style={{ background: 'rgba(230, 126, 34, 0.14)' }}
+          animate={{ y: [0, 26, 0], x: [0, 18, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
-        <div
+        <motion.div
           className="absolute -right-48 bottom-1/4 h-96 w-96 rounded-full blur-3xl"
-          style={{ background: 'rgba(20, 28, 44, 0.06)', animation: 'float 8s ease-in-out infinite 1s' }}
+          style={{ background: 'rgba(20, 28, 44, 0.08)' }}
+          animate={{ y: [0, -22, 0], x: [0, -16, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        />
+        <motion.div
+          className="absolute left-[18%] top-[18%] h-72 w-72 rounded-full blur-3xl"
+          style={{ background: 'rgba(255,122,24,0.16)' }}
+          animate={{ y: [0, -18, 0], x: [0, 14, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
         />
       </div>
 
       <div className="absolute left-0 right-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-orange-400/60 to-transparent" />
 
-      <div className="container-wide relative z-10 py-32">
-        <div className="max-w-4xl">
+      <div className="container-wide relative z-10 pb-20 pt-28 sm:pt-32 md:py-32">
+        <div className="max-w-5xl">
           <motion.h1
             variants={fadeInUp}
             initial="initial"
             animate="animate"
             transition={{ duration: 1, delay: 0.1, ease: EASE }}
-            className="mb-6 text-5xl font-bold leading-tight text-white md:text-7xl"
+            className="mb-6 max-w-5xl text-4xl font-bold leading-[0.95] tracking-tight text-white sm:text-5xl md:text-7xl xl:text-[5.5rem]"
           >
-            Engineering <span className="text-orange-400">Precision</span>
+            Power and {'  '}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{ backgroundImage: 'linear-gradient(90deg, #ff7a18, #ffb347)' }}
+            >
+              Integration
+            </span>
           </motion.h1>
 
-          <motion.h2
+          {/* <motion.h2
             variants={fadeInUp}
             initial="initial"
             animate="animate"
@@ -186,34 +312,25 @@ export default function Hero() {
             className="mb-8 text-2xl font-light leading-relaxed text-gray-100 md:text-3xl"
           >
             Into Every System
-          </motion.h2>
+          </motion.h2> */}
 
-          <motion.p
+          <motion.div
             variants={fadeInUp}
             initial="initial"
             animate="animate"
             transition={{ duration: 1, delay: 0.3, ease: EASE }}
-            className="mb-12 max-w-2xl text-lg leading-relaxed text-gray-200"
           >
-            Industrial automation solutions for manufacturing and process plants, from PLC and SCADA design to commissioning and lifecycle support.
-          </motion.p>
+            <TypewriterServices />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: EASE }}
-            className="mb-12 grid grid-cols-2 gap-8 border-t border-white/20 py-8 md:grid-cols-3"
+            className="mb-12 grid grid-cols-1 gap-6 border-t border-white/20 py-8 sm:grid-cols-2 md:grid-cols-3"
           >
-            {METRICS.map((m, i) => (
-              <motion.div
-                key={m.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 + i * 0.1, ease: EASE }}
-              >
-                <div className="mb-2 text-3xl font-bold text-white md:text-4xl">{m.value}</div>
-                <div className="text-sm uppercase tracking-wide text-gray-300">{m.label}</div>
-              </motion.div>
+            {METRICS.map((metric, index) => (
+              <MetricCard key={metric.label} metric={metric} index={index} />
             ))}
           </motion.div>
 
@@ -223,20 +340,57 @@ export default function Hero() {
             animate="animate"
             transition={{ duration: 1, delay: 0.6, ease: EASE }}
           >
-            <a
+            <motion.a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-lg bg-orange-500 px-8 py-4 font-medium text-white shadow-sm transition-all duration-300 hover:bg-orange-400 hover:shadow-md"
+              initial="rest"
+              whileHover="hover"
+              whileTap="tap"
+              variants={{
+                rest: { scale: 1, y: 0 },
+                hover: { scale: 1.05, y: -3 },
+                tap:  { scale: 0.97, y: 0 },
+              }}
+              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-xl px-8 py-4 font-semibold text-white transition-shadow duration-300 hover:shadow-[0_20px_48px_rgba(255,100,0,0.55)]"
+              style={{
+                background: 'linear-gradient(135deg,#ff6400 0%,#ff8c2a 55%,#ffb060 100%)',
+                boxShadow: '0 8px 24px rgba(255,106,0,0.38), inset 0 1px 0 rgba(255,255,255,0.22)',
+              }}
             >
-              <span>Request Consultation</span>
-              <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+              <ButtonSparks />
+
+              {/* Permanent top-edge gloss — gives the reflective highlight */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-xl"
+                style={{ background: 'linear-gradient(to bottom,rgba(255,255,255,0.22),rgba(255,255,255,0))' }}
+              />
+
+              {/* Diagonal shine sweep triggered on hover via variant propagation */}
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 w-14 -skew-x-12 bg-white/30 blur-[3px]"
+                variants={{
+                  rest: { x: '-140%' },
+                  hover: { x: '360%' },
+                }}
+                transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+              />
+
+              <span className="relative z-10 tracking-wide">Request Consultation</span>
+
+              <motion.div
+                className="relative z-10"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+              >
                 <ArrowRight className="h-5 w-5" />
               </motion.div>
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </div>
 
-      <style>{`@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(20px); } }`}</style>
-    </section>
+    </motion.section>
   );
 }

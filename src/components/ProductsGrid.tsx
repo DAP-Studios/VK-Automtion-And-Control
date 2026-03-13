@@ -293,7 +293,7 @@ export default function ProductsGrid() {
 										</div>
 
 										{/* Name strip */}
-										<div className="absolute bottom-0 left-0 right-0 flex flex-col justify-center items-center h-1/4 p-4 border-t border-brand-orange/30 backdrop-blur-sm backdrop-blur-sm">
+										<div className="absolute bottom-0 left-0 right-0 flex h-1/4 flex-col items-center justify-center border-t border-brand-orange/30 p-4 backdrop-blur-sm">
 											<p className="text-xs mono-label text-brand-orange font-semibold mb-1 uppercase tracking-wide">
 												{product.category}
 											</p>
@@ -367,10 +367,10 @@ export default function ProductsGrid() {
 					<div className="mt-20 mb-8">
 						<div className="text-center mb-8">
 							<h3 className="text-2xl font-bold text-industrial-900 mb-2">
-								Technology Partners
+								Platforms We Work With
 							</h3>
 							<p className="text-industrial-500">
-								Certified integration across leading automation platforms.
+								Hands-on integration experience across widely used automation platforms.
 							</p>
 						</div>
 						<div className="relative overflow-hidden py-8 border-y border-stone-200">

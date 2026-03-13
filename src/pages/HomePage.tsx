@@ -1,9 +1,9 @@
-import React from 'react';
 import Seo from '../components/Seo';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Clients from '../components/Clients';
 import Industries from '../components/Industries';
 import Contact from '../components/Contact';
 import { siteConfig } from '../lib/siteConfig';
@@ -42,8 +42,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <Industries />
-      {/* <Services /> */}
-      {/* <Clients /> */}
+      <Clients variant="featured" />
       <Contact />
       <Footer />
     </>

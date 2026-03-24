@@ -17,8 +17,8 @@ export const siteConfig = {
   defaultDescription:
     'VK Automation and Control delivers PLC programming, SCADA development, VFD commissioning, industrial networking, control panel engineering, and automation support for manufacturing and process plants in Vapi, Gujarat.',
   ogImage: 'https://www.vkautomationandcontrol.in/fin.png',
-  phoneDisplay: '+91 7949338324',
-  phoneHref: 'tel:+917949338324',
+  phoneDisplay: '+91 7096799555',
+  phoneHref: 'tel:+917096799555',
   email: 'info.vkautomationadncontrol@gmail.com',
   emailHref: 'mailto:info.vkautomationadncontrol@gmail.com',
   addressLines: [

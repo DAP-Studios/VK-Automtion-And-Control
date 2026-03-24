@@ -140,7 +140,7 @@ export default function About() {
 									<h3 className="text-lg font-bold mb-5 text-industrial-900">Core Capabilities</h3>
 									<ul className="space-y-3 text-industrial-600">
 									{[
-										'PLC and SCADA programming (IEC 61131-3)',
+										'PLC and SCADA programming',
 										'VFD commissioning and drive integration',
 										'Industrial networking (Profibus, Profinet, Modbus)',
 										'Panel design, fabrication, and installation',

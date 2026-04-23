@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import { ArrowRight } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import TsParticles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import bgImage from '../assets/bg.png';
 import TypewriterServices from './TypewriterServices';
 
@@ -115,6 +113,8 @@ function GlowingRibbon({ viewportHeight }: { viewportHeight: number }) {
   );
 
   const mid = viewportHeight / 2;
+  const q1 = Math.round(viewportHeight * 0.25);
+  const q2 = Math.round(viewportHeight * 0.5);
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -131,7 +131,7 @@ function GlowingRibbon({ viewportHeight }: { viewportHeight: number }) {
         {ribbons.map((r) => (
           <motion.path
             key={r.id}
-            d={`M 0 ${mid + r.randomY} Q 25% ${mid + 30}, 50% ${mid - 20} T 100% ${mid + r.randomY}`}
+            d={`M 0 ${mid + r.randomY} Q ${q1} ${mid + 30}, ${q2} ${mid - 20} T ${viewportHeight} ${mid + r.randomY}`}
             stroke="url(#orangeGradient)"
             strokeWidth="8"
             fill="none"
@@ -139,10 +139,10 @@ function GlowingRibbon({ viewportHeight }: { viewportHeight: number }) {
             filter="url(#glow)"
             animate={{
               d: [
-                `M 0 ${mid + r.randomY} Q 25% ${mid + 50}, 50% ${mid - 20} T 100% ${mid + r.randomY}`,
-                `M 0 ${mid + r.randomY + 30} Q 25% ${mid - 30}, 50% ${mid + 20} T 100% ${mid + r.randomY - 30}`,
-                `M 0 ${mid + r.randomY - 20} Q 25% ${mid + 40}, 50% ${mid - 30} T 100% ${mid + r.randomY + 20}`,
-                `M 0 ${mid + r.randomY} Q 25% ${mid + 50}, 50% ${mid - 20} T 100% ${mid + r.randomY}`,
+                `M 0 ${mid + r.randomY} Q ${q1} ${mid + 50}, ${q2} ${mid - 20} T ${viewportHeight} ${mid + r.randomY}`,
+                `M 0 ${mid + r.randomY + 30} Q ${q1} ${mid - 30}, ${q2} ${mid + 20} T ${viewportHeight} ${mid + r.randomY - 30}`,
+                `M 0 ${mid + r.randomY - 20} Q ${q1} ${mid + 40}, ${q2} ${mid - 30} T ${viewportHeight} ${mid + r.randomY + 20}`,
+                `M 0 ${mid + r.randomY} Q ${q1} ${mid + 50}, ${q2} ${mid - 20} T ${viewportHeight} ${mid + r.randomY}`,
               ],
             }}
             transition={{
@@ -184,40 +184,13 @@ function MetricCard({ metric, index }: { metric: (typeof METRICS)[number]; index
 }
 
 function ButtonSparks() {
-  const particlesInit = useCallback(async (engine: unknown) => {
-    await loadFull(engine as never);
-  }, []);
-
   return (
-    <TsParticles
-      id="hero-button-sparks"
-      init={particlesInit}
+    <span
+      aria-hidden
       className="pointer-events-none absolute inset-0"
-      options={{
-        fullScreen: { enable: false },
-        background: { color: 'transparent' },
-        fpsLimit: 60,
-        particles: {
-          number: { value: 0 },
-          color: { value: ['#ffb347', '#ff7a18', '#ffd28a'] },
-          move: {
-            direction: 'none',
-            enable: true,
-            outModes: { default: 'destroy' },
-            speed: { min: 1, max: 2.5 },
-          },
-          opacity: { value: { min: 0.3, max: 1 }, animation: { enable: true, speed: 1, startValue: 'max', destroy: 'min' } },
-          size: { value: { min: 1, max: 3 } },
-          shape: { type: 'circle' },
-        },
-        emitters: {
-          direction: 'none',
-          life: { count: 0, delay: 2.2, duration: 0.18 },
-          position: { x: 50, y: 50 },
-          rate: { delay: 0.08, quantity: 3 },
-          size: { width: 4, height: 4 },
-        },
-        detectRetina: true,
+      style={{
+        background:
+          'radial-gradient(circle at 30% 50%, rgba(255, 214, 170, 0.22), transparent 32%), radial-gradient(circle at 70% 45%, rgba(255, 255, 255, 0.2), transparent 28%)',
       }}
     />
   );
